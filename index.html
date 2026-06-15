@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napana Super | Premium Grocery Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <header class="glass-nav">
+        <!-- මෙතනට ඔයා එවපු අලුත් Logo එක ඇතුළත් කළා -->
+        <div class="logo-container">
+            <img src="https://i.ibb.co/FLSYfMC5/803-DD0-BD-1-E49-4-DB9-9-AE2-8-EAAE17390-C6.png" alt="Napana Super Logo" class="site-logo">
+            <div class="logo">Napana <span>Super</span></div>
+        </div>
+        <nav><a href="#">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#location">Location</a></nav>
+        <div class="nav-controls">
+            <button id="cart-icon-btn" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></button>
+            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>QUALITY PRODUCTS AT <br><span>BEST PRICES</span></h1>
+            <p>Served With Trust Since 2019 at Napana, Gunnapana.</p>
+            <div class="hero-btns">
+                <a href="tel:0707103215" class="btn call-btn"><i class="fas fa-phone-alt"></i> CALL NOW</a>
+                <a href="https://wa.me/94707103215" class="btn wa-btn"><i class="fab fa-whatsapp"></i> WHATSAPP DIRECT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Product Catalogue -->
+    <section id="products" class="section">
+        <h2 class="section-title">Product <span>Catalogue</span></h2>
+        
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterProducts('all')">All Items</button>
+            <button class="tab-btn" onclick="filterProducts('groceries')"><i class="fas fa-apple-alt"></i> Groceries</button>
+            <button class="tab-btn" onclick="filterProducts('beverages')"><i class="fas fa-cookie-bite"></i> Beverages</button>
+            <button class="tab-btn" onclick="filterProducts('household')"><i class="fas fa-soap"></i> Household</button>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <!-- Products load here dynamically -->
+        </div>
+    </section>
+
+    <section id="about" class="section glass-section">
+        <div class="about-container">
+            <h2 class="section-title">🏪 About <span>Us</span></h2>
+            <p>Napana Super කියන්නේ 2019 වසරේ සිට Napana, Gunnapana ප්‍රදේශයේ පාරිභෝගිකයින් හට උසස්ම තත්ත්වයේ බඩු බාහිරාදිය සාධාරණ මිල ගණන් යටතේ සපයන විශ්වාසනීය සුපිරි වෙළඳසැලකි.</p>
+            <div class="badge"><i class="fas fa-award"></i> Since 2019 - Trusted Service</div>
+        </div>
+    </section>
+
+    <section id="location" class="section">
+        <div class="location-container">
+            <div class="location-details glass-card">
+                <h3><i class="fas fa-map-marked-alt"></i> Address</h3>
+                <p>No.7/B, Napana, Gunnapana, Sri Lanka.</p>
+                <hr class="divider">
+                <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                <p>Everyday: 6:00 AM - 7:30 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button onclick="toggleCart()" class="close-cart-btn">&times;</button>
+        </div>
+        <div id="cart-items-container"></div>
+        <div class="cart-footer">
+            <h4>Total: Rs. <span id="cart-total-price">0</span></h4>
+            <a id="whatsapp-checkout-link" href="#" class="checkout-btn" style="text-align:center; display:block; text-decoration:none;" onclick="checkoutToWhatsApp(event)">
+                <i class="fab fa-whatsapp"></i> Order Via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <a href="https://wa.me/94707103215" class="floating-wa"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        const productsData = [
+            { id: 1, name: "Sugar (සීනි)", price: 260, category: "groceries", icon: "fa-cubes", unit: "kg" },
+            { id: 2, name: "Dhal (පරිප්පු)", price: 320, category: "groceries", icon: "fa-seedling", unit: "kg" },
+            { id: 3, name: "Samba Rice (සම්බා)", price: 260, category: "groceries", icon: "fa-mortar-pestle", unit: "kg" },
+            { id: 4, name: "Milk Powder 400g", price: 1050, category: "beverages", icon: "fa-cheese", unit: "pack" },
+            { id: 5, name: "Tea Leaves 200g", price: 450, category: "beverages", icon: "fa-mug-hot", unit: "pack" },
+            { id: 6, name: "Laundry Soap", price: 150, category: "household", icon: "fa-soap", unit: "nos" },
+            { id: 7, name: "Dishwash Liquid", price: 380, category: "household", icon: "fa-sparkles", unit: "nos" }
+        ];
+
+        let cart = [];
+
+        window.onload = function() {
+            displayProducts(productsData);
+        };
+
+        function displayProducts(products) {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            products.forEach(p => {
+                let options = '';
+                if(p.unit === "kg") {
+                    options = `<option value="1">1 kg</option><option value="2">2 kg</option><option value="5">5 kg</option>`;
+                } else {
+                    options = `<option value="1">1 Quantity</option><option value="2">2 Quantity</option><option value="5">5 Quantity</option>`;
+                }
+
+                container.innerHTML += `
+                    <div class="product-card glass-card">
+                        <i class="fas ${p.icon} cat-icon"></i>
+                        <h3>${p.name}</h3>
+                        <h4>Rs. ${p.price} / ${p.unit}</h4>
+                        <select id="qty-${p.id}" class="qty-select">
+                            ${options}
+                        </select>
+                        <button class="add-to-cart-btn" onclick="processAddToCart(${p.id})">Add to Cart</button>
+                    </div>
+                `;
+            });
+        }
+
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(category === 'all') {
+                displayProducts(productsData);
+            } else {
+                const filtered = productsData.filter(p => p.category === category);
+                displayProducts(filtered);
+            }
+        }
+
+        function processAddToCart(id) {
+            const product = productsData.find(p => p.id === id);
+            const selectEl = document.getElementById(`qty-${id}`);
+            const selectedQty = parseInt(selectEl.value);
+            
+            let itemInCart = cart.find(i => i.id === id);
+            if (itemInCart) {
+                itemInCart.quantity += selectedQty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: selectedQty,
+                    unit: product.unit
+                });
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const countSpan = document.getElementById('cart-count');
+            const totalSpan = document.getElementById('cart-total-price');
+            container.innerHTML = '';
+            let total = 0; let count = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                count += item.quantity;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div><h4>${item.name}</h4><p>Rs. ${item.price} x ${item.quantity} ${item.unit}</p></div>
+                        <div class="cart-item-actions">
+                            <button onclick="changeQty(${index}, 1)">+</button>
+                            <button onclick="changeQty(${index}, -1)">-</button>
+                        </div>
+                    </div>`;
+            });
+            countSpan.innerText = count; totalSpan.innerText = total;
+        }
+
+        function changeQty(index, amount) {
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) { cart.splice(index, 1); }
+            updateCartUI();
+        }
+
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
+        
+        function checkoutToWhatsApp(e) {
+            if(cart.length === 0) { 
+                e.preventDefault();
+                alert("Your cart is empty!"); 
+                return; 
+            }
+            let message = "Hello Napana Super! I want to place a Pre-Order:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `▪️ ${item.name} - ${item.quantity} ${item.unit} - Rs.${item.price * item.quantity}\n`;
+                total += item.price * item.quantity;
+            });
+            message += `\nTotal Bill: Rs. ${total}\n\nPlease confirm my order.`;
+            
+            document.getElementById('whatsapp-checkout-link').href = `https://wa.me/94707103215?text=${encodeURIComponent(message)}`;
+        }
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme'); document.body.classList.toggle('dark-theme');
+            toggleBtn.querySelector('i').className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
+        });
+    </script>
+</body>
+</html>
