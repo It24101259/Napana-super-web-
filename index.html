@@ -1,219 +1,965 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Napana Super | Premium Grocery Store</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="dark-theme">
+    <title>Napana Premium Supermarket</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent: #f59e0b;
+        }
 
-    <header class="glass-nav">
-        <!-- මෙතනට ඔයා එවපු අලුත් Logo එක ඇතුළත් කළා -->
-        <div class="logo-container">
-            <img src="https://i.ibb.co/FLSYfMC5/803-DD0-BD-1-E49-4-DB9-9-AE2-8-EAAE17390-C6.png" alt="Napana Super Logo" class="site-logo">
-            <div class="logo">Napana <span>Super</span></div>
-        </div>
-        <nav><a href="#">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#location">Location</a></nav>
-        <div class="nav-controls">
-            <button id="cart-icon-btn" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></button>
-            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--surface);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.4rem;
+            position: relative;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Search Bar */
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--text);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Hero Banner */
+        .hero {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 15px;
+        }
+        
+        .hero-banner {
+            background: linear-gradient(135deg, #064e3b 0%, #111827 100%);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .hero-banner h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .hero-banner p {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Categories Section */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .category-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        /* Products Grid */
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        .product-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .product-card:active {
+            transform: scale(0.98);
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--background);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        /* Option Selectors */
+        .selectors-box {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .opt-select {
+            width: 100%;
+            padding: 6px 8px;
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.8rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.05rem;
+        }
+
+        .add-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Sticky Bottom Navigation & Cart Sheet */
+        .cart-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--surface);
+            border-radius: 20px 20px 0 0;
+            border-top: 1px solid var(--border);
+            max-height: 80vh;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+            box-shadow: 0 -10px 25px -5px rgba(0,0,0,0.5);
+        }
+
+        .cart-sheet.open {
+            transform: translateY(0);
+        }
+
+        .cart-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-items-list {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--background);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .item-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .item-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .item-qty-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            background-color: var(--surface);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 150;
+            display: none;
+        }
+
+        .cart-overlay.open {
+            display: block;
+        }
+
+        /* Floating bar at bottom when items in cart */
+        .bottom-bar {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            z-index: 140;
+            cursor: pointer;
+            transform: translateY(150%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .bottom-bar.show {
+            transform: translateY(0);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo"><i class="fa-solid fa-shop"></i> Napana <span>Premium</span></div>
+                <button class="cart-icon-btn" onclick="toggleCart(true)">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-badge" id="badge-count">0</span>
+                </button>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="search-input" id="search-input" placeholder="භාණ්ඩ වර්ග හෝ මිල සර්ච් කරන්න..." oninput="filterProducts()">
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>QUALITY PRODUCTS AT <br><span>BEST PRICES</span></h1>
-            <p>Served With Trust Since 2019 at Napana, Gunnapana.</p>
-            <div class="hero-btns">
-                <a href="tel:0707103215" class="btn call-btn"><i class="fas fa-phone-alt"></i> CALL NOW</a>
-                <a href="https://wa.me/94707103215" class="btn wa-btn"><i class="fab fa-whatsapp"></i> WHATSAPP DIRECT</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Product Catalogue -->
-    <section id="products" class="section">
-        <h2 class="section-title">Product <span>Catalogue</span></h2>
-        
-        <div class="category-tabs">
-            <button class="tab-btn active" onclick="filterProducts('all')">All Items</button>
-            <button class="tab-btn" onclick="filterProducts('groceries')"><i class="fas fa-apple-alt"></i> Groceries</button>
-            <button class="tab-btn" onclick="filterProducts('beverages')"><i class="fas fa-cookie-bite"></i> Beverages</button>
-            <button class="tab-btn" onclick="filterProducts('household')"><i class="fas fa-soap"></i> Household</button>
-        </div>
-
-        <div class="products-grid" id="products-container">
-            <!-- Products load here dynamically -->
-        </div>
-    </section>
-
-    <section id="about" class="section glass-section">
-        <div class="about-container">
-            <h2 class="section-title">🏪 About <span>Us</span></h2>
-            <p>Napana Super කියන්නේ 2019 වසරේ සිට Napana, Gunnapana ප්‍රදේශයේ පාරිභෝගිකයින් හට උසස්ම තත්ත්වයේ බඩු බාහිරාදිය සාධාරණ මිල ගණන් යටතේ සපයන විශ්වාසනීය සුපිරි වෙළඳසැලකි.</p>
-            <div class="badge"><i class="fas fa-award"></i> Since 2019 - Trusted Service</div>
-        </div>
-    </section>
-
-    <section id="location" class="section">
-        <div class="location-container">
-            <div class="location-details glass-card">
-                <h3><i class="fas fa-map-marked-alt"></i> Address</h3>
-                <p>No.7/B, Napana, Gunnapana, Sri Lanka.</p>
-                <hr class="divider">
-                <h3><i class="fas fa-clock"></i> Opening Hours</h3>
-                <p>Everyday: 6:00 AM - 7:30 PM</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <button onclick="toggleCart()" class="close-cart-btn">&times;</button>
-        </div>
-        <div id="cart-items-container"></div>
-        <div class="cart-footer">
-            <h4>Total: Rs. <span id="cart-total-price">0</span></h4>
-            <a id="whatsapp-checkout-link" href="#" class="checkout-btn" style="text-align:center; display:block; text-decoration:none;" onclick="checkoutToWhatsApp(event)">
-                <i class="fab fa-whatsapp"></i> Order Via WhatsApp
-            </a>
+    <div class="hero">
+        <div class="hero-banner">
+            <h1>Premium Grocery Shopping</h1>
+            <p>පහසුවෙන්ම තෝරලා WhatsApp හරහා ඇණවුම් කරන්න</p>
         </div>
     </div>
 
-    <a href="https://wa.me/94707103215" class="floating-wa"><i class="fab fa-whatsapp"></i></a>
+    <main class="main-container">
+        <div class="category-tabs">
+            <button class="tab active" onclick="switchCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Items</button>
+            <button class="tab" onclick="switchCategory('rice', this)"><i class="fa-solid fa-bowl-rice"></i> Rice (සහල්)</button>
+            <button class="tab" onclick="switchCategory('biscuits', this)"><i class="fa-solid fa-cookie"></i> Biscuits</button>
+            <button class="tab" onclick="switchCategory('icecream', this)"><i class="fa-solid fa-ice-cream"></i> Ice Cream</button>
+        </div>
+
+        <h2 class="section-title" id="section-title"><i class="fa-solid fa-star text-primary"></i> Supermarket Products</h2>
+        
+        <div class="products-grid" id="products-grid">
+            <!-- Dynamic products will be injected here by Javascript -->
+        </div>
+    </main>
+
+    <!-- Floating bottom basket bar -->
+    <div class="bottom-bar" id="floating-basket-bar" onclick="toggleCart(true)">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-basket-shopping" style="font-size: 1.2rem;"></i>
+            <div>
+                <span id="floating-item-count" style="font-weight: 700;">0 Items</span>
+                <div style="font-size: 0.75rem; opacity: 0.9;">බාස්කට් එක බලන්න ක්ලික් කරන්න</div>
+            </div>
+        </div>
+        <div style="font-weight: 700; font-size: 1.1rem;" id="floating-total-price">Rs. 0</div>
+    </div>
+
+    <!-- Cart Overlay & Sheet -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
+    <div class="cart-sheet" id="cart-sheet">
+        <div class="cart-header">
+            <h2><i class="fa-solid fa-basket-shopping" style="color: var(--primary);"></i> මගේ බාස්කට් එක</h2>
+            <button class="close-cart" onclick="toggleCart(false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="cart-items-list" id="cart-items-list">
+            <!-- Cart items will be loaded here dynamically -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>මුළු එකතුව (Total):</span>
+                <span id="cart-total-price" style="color: var(--accent);">Rs. 0</span>
+            </div>
+            <button class="checkout-btn" onclick="sendToWhatsApp()">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Order Via WhatsApp
+            </button>
+        </div>
+    </div>
 
     <script>
+        // Premium Product Database
         const productsData = [
-            { id: 1, name: "Sugar (සීනි)", price: 260, category: "groceries", icon: "fa-cubes", unit: "kg" },
-            { id: 2, name: "Dhal (පරිප්පු)", price: 320, category: "groceries", icon: "fa-seedling", unit: "kg" },
-            { id: 3, name: "Samba Rice (සම්බා)", price: 260, category: "groceries", icon: "fa-mortar-pestle", unit: "kg" },
-            { id: 4, name: "Milk Powder 400g", price: 1050, category: "beverages", icon: "fa-cheese", unit: "pack" },
-            { id: 5, name: "Tea Leaves 200g", price: 450, category: "beverages", icon: "fa-mug-hot", unit: "pack" },
-            { id: 6, name: "Laundry Soap", price: 150, category: "household", icon: "fa-soap", unit: "nos" },
-            { id: 7, name: "Dishwash Liquid", price: 380, category: "household", icon: "fa-sparkles", unit: "nos" }
+            // --- RICE CATEGORY ---
+            {
+                id: "rice_keeri",
+                name: "Premium Keeri Samba (කීරි සම්බා)",
+                category: "rice",
+                icon: "fa-bowl-rice",
+                options: {
+                    "Araliya": { "1kg": 260, "5kg": 1280, "10kg": 2500 },
+                    "Nipuna": { "1kg": 255, "5kg": 1260, "10kg": 2480 },
+                    "Laksana": { "1kg": 250, "5kg": 1230, "10kg": 2420 }
+                }
+            },
+            {
+                id: "rice_nadu",
+                name: "Nadu Rice (නාඩු සහල්)",
+                category: "rice",
+                icon: "fa-bowl-rice",
+                options: {
+                    "Araliya": { "1kg": 220, "5kg": 1080, "10kg": 2150 },
+                    "Nipuna": { "1kg": 218, "5kg": 1070, "10kg": 2120 },
+                    "Local Brand": { "1kg": 210, "5kg": 1020, "10kg": 2000 }
+                }
+            },
+            {
+                id: "rice_kakulu",
+                name: "Kakulu Rice - Red/White (කැකුළු සහල්)",
+                category: "rice",
+                icon: "fa-bowl-rice",
+                options: {
+                    "Premium Clean": { "1kg": 200, "5kg": 980, "10kg": 1940 },
+                    "Samba Red": { "1kg": 210, "5kg": 1030, "10kg": 2020 }
+                }
+            },
+
+            // --- BISCUITS CATEGORY ---
+            {
+                id: "bisc_cream",
+                name: "Cream Cracker Biscuits",
+                category: "biscuits",
+                icon: "fa-cookie",
+                options: {
+                    "Munchee": { "200g": 190, "490g": 440 },
+                    "Maliban": { "200g": 185, "490g": 435 }
+                }
+            },
+            {
+                id: "bisc_chocolate",
+                name: "Chocolate Cream Biscuits",
+                category: "biscuits",
+                icon: "fa-cookie",
+                options: {
+                    "Munchee Super": { "200g": 220, "400g": 420 },
+                    "Maliban Delight": { "200g": 215, "400g": 410 }
+                }
+            },
+            {
+                id: "bisc_marie",
+                name: "Classic Marie Biscuits",
+                category: "biscuits",
+                icon: "fa-cookie",
+                options: {
+                    "Munchee Marie": { "80g": 80, "300g": 260 },
+                    "Maliban Gold Marie": { "80g": 75, "300g": 250 }
+                }
+            },
+
+            // --- ICE CREAM CATEGORY ---
+            {
+                id: "ice_vanilla",
+                name: "Premium Vanilla Ice Cream",
+                category: "icecream",
+                icon: "fa-ice-cream",
+                options: {
+                    "Cargills Magic": { "500ml": 280, "1L": 520, "2L": 980 },
+                    "Elephant House": { "500ml": 290, "1L": 540, "2L": 1000 },
+                    "Highland": { "500ml": 270, "1L": 500 }
+                }
+            },
+            {
+                id: "ice_chocolate",
+                name: "Rich Chocolate Ice Cream",
+                category: "icecream",
+                icon: "fa-ice-cream",
+                options: {
+                    "Cargills Magic": { "500ml": 320, "1L": 580, "2L": 1100 },
+                    "Elephant House": { "500ml": 330, "1L": 600, "2L": 1150 }
+                }
+            },
+            {
+                id: "ice_fruit",
+                name: "Fruit & Nut Ice Cream",
+                category: "icecream",
+                icon: "fa-ice-cream",
+                options: {
+                    "Elephant House": { "500ml": 380, "1L": 720 },
+                    "Cargills Magic": { "500ml": 360, "1L": 690 }
+                }
+            }
         ];
 
         let cart = [];
+        let currentCategory = 'all';
 
-        window.onload = function() {
-            displayProducts(productsData);
-        };
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
 
-        function displayProducts(products) {
-            const container = document.getElementById('products-container');
-            container.innerHTML = '';
-            
-            products.forEach(p => {
-                let options = '';
-                if(p.unit === "kg") {
-                    options = `<option value="1">1 kg</option><option value="2">2 kg</option><option value="5">5 kg</option>`;
-                } else {
-                    options = `<option value="1">1 Quantity</option><option value="2">2 Quantity</option><option value="5">5 Quantity</option>`;
-                }
+        // Render products into the grid
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
 
-                container.innerHTML += `
-                    <div class="product-card glass-card">
-                        <i class="fas ${p.icon} cat-icon"></i>
-                        <h3>${p.name}</h3>
-                        <h4>Rs. ${p.price} / ${p.unit}</h4>
-                        <select id="qty-${p.id}" class="qty-select">
-                            ${options}
-                        </select>
-                        <button class="add-to-cart-btn" onclick="processAddToCart(${p.id})">Add to Cart</button>
+            const filtered = productsData.filter(p => currentCategory === 'all' || p.category === currentCategory);
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="no-results">කිසිවක් සොයාගත නොහැක (No items found)</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                // Get default brand and default size
+                const firstBrand = Object.keys(p.options)[0];
+                const firstSize = Object.keys(p.options[firstBrand])[0];
+                const defaultPrice = p.options[firstBrand][firstSize];
+
+                // Build Brand dropdown options
+                let brandOptionsHtml = '';
+                Object.keys(p.options).forEach(b => {
+                    brandOptionsHtml += `<option value="${b}">${b}</option>`;
+                });
+
+                // Build Size dropdown options
+                let sizeOptionsHtml = '';
+                Object.keys(p.options[firstBrand]).forEach(s => {
+                    sizeOptionsHtml += `<option value="${s}">${s}</option>`;
+                });
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('data-id', p.id);
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="product-image-placeholder">
+                            <i class="fa-solid ${p.icon}"></i>
+                        </div>
+                        <h3 class="product-title">${p.name}</h3>
+                        
+                        <div class="selectors-box">
+                            <div class="select-wrapper">
+                                <label>වර්ගය / Brand:</label>
+                                <select class="opt-select brand-select" onchange="updateProductPrice('${p.id}')">
+                                    ${brandOptionsHtml}
+                                </select>
+                            </div>
+                            <div class="select-wrapper">
+                                <label>ප්‍රමාණය / Size:</label>
+                                <select class="opt-select size-select" onchange="updateProductPrice('${p.id}')">
+                                    ${sizeOptionsHtml}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="price">Rs. <span class="price-val">${defaultPrice}</span></span>
+                        <button class="add-btn" onclick="addToBasket('${p.id}')">
+                            <i class="fa-solid fa-plus"></i> එක් කරන්න
+                        </button>
                     </div>
                 `;
+                grid.appendChild(card);
             });
         }
 
-        function filterProducts(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        // Triggered when dropdown changes to update sizes and price
+        function updateProductPrice(productId) {
+            const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+            const p = productsData.find(prod => prod.id === productId);
+            
+            const brandSelect = card.querySelector('.brand-select');
+            const sizeSelect = card.querySelector('.size-select');
+            const priceValSpan = card.querySelector('.price-val');
 
-            if(category === 'all') {
-                displayProducts(productsData);
-            } else {
-                const filtered = productsData.filter(p => p.category === category);
-                displayProducts(filtered);
+            const selectedBrand = brandSelect.value;
+            let selectedSize = sizeSelect.value;
+
+            // Re-populate sizes if changed brand doesn't have the previously selected size
+            const availableSizes = p.options[selectedBrand];
+            if (!availableSizes[selectedSize]) {
+                sizeSelect.innerHTML = '';
+                Object.keys(availableSizes).forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.textContent = s;
+                    sizeSelect.appendChild(opt);
+                });
+                selectedSize = Object.keys(availableSizes)[0];
+            }
+
+            // Update price text
+            priceValSpan.textContent = p.options[selectedBrand][selectedSize];
+        }
+
+        // Switch category tabs
+        function switchCategory(cat, el) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            // Clear search input on switching category
+            document.getElementById('search-input').value = '';
+            
+            renderProducts();
+        }
+
+        // Global Search Filter function
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.product-card');
+            let hasResults = false;
+
+            cards.forEach(card => {
+                const id = card.getAttribute('data-id');
+                const p = productsData.find(prod => prod.id === id);
+                
+                const matchesSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                const matchesCategory = currentCategory === 'all' || p.category === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Remove existing temporary empty message if any
+            const existingMsg = document.getElementById('search-empty-msg');
+            if (existingMsg) existingMsg.remove();
+
+            if (!hasResults) {
+                const msg = document.createElement('div');
+                msg.id = 'search-empty-msg';
+                msg.className = 'no-results';
+                msg.textContent = 'ඔබ සර්ච් කල භාණ්ඩය හමුනොවුණි (No matches found)';
+                document.getElementById('products-grid').appendChild(msg);
             }
         }
 
-        function processAddToCart(id) {
-            const product = productsData.find(p => p.id === id);
-            const selectEl = document.getElementById(`qty-${id}`);
-            const selectedQty = parseInt(selectEl.value);
+        // Add to Basket
+        function addToBasket(productId) {
+            const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+            const p = productsData.find(prod => prod.id === productId);
             
-            let itemInCart = cart.find(i => i.id === id);
-            if (itemInCart) {
-                itemInCart.quantity += selectedQty;
+            const brand = card.querySelector('.brand-select').value;
+            const size = card.querySelector('.size-select').value;
+            const price = p.options[brand][size];
+
+            // Unique identifier for items with specific variant combination
+            const cartItemId = `${productId}_${brand}_${size}`;
+
+            const existingIndex = cart.findIndex(item => item.cartItemId === cartItemId);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
             } else {
                 cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    quantity: selectedQty,
-                    unit: product.unit
+                    cartItemId: cartItemId,
+                    id: productId,
+                    name: p.name,
+                    brand: brand,
+                    size: size,
+                    price: price,
+                    qty: 1
                 });
             }
-            updateCartUI();
-        }
 
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const countSpan = document.getElementById('cart-count');
-            const totalSpan = document.getElementById('cart-total-price');
-            container.innerHTML = '';
-            let total = 0; let count = 0;
+            updateCartState();
             
-            cart.forEach((item, index) => {
-                total += item.price * item.quantity;
-                count += item.quantity;
-                container.innerHTML += `
-                    <div class="cart-item">
-                        <div><h4>${item.name}</h4><p>Rs. ${item.price} x ${item.quantity} ${item.unit}</p></div>
-                        <div class="cart-item-actions">
-                            <button onclick="changeQty(${index}, 1)">+</button>
-                            <button onclick="changeQty(${index}, -1)">-</button>
-                        </div>
-                    </div>`;
-            });
-            countSpan.innerText = count; totalSpan.innerText = total;
+            // Tiny animation trick on button
+            const btn = card.querySelector('.add-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-check"></i> එක් වුණා`;
+            btn.style.backgroundColor = '#25d366';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = '';
+            }, 800);
         }
 
-        function changeQty(index, amount) {
-            cart[index].quantity += amount;
-            if (cart[index].quantity <= 0) { cart.splice(index, 1); }
-            updateCartUI();
-        }
+        // Update total states, count, UI views
+        function updateCartState() {
+            let totalCount = 0;
+            let totalPrice = 0;
 
-        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
-        
-        function checkoutToWhatsApp(e) {
-            if(cart.length === 0) { 
-                e.preventDefault();
-                alert("Your cart is empty!"); 
-                return; 
-            }
-            let message = "Hello Napana Super! I want to place a Pre-Order:\n\n";
-            let total = 0;
             cart.forEach(item => {
-                message += `▪️ ${item.name} - ${item.quantity} ${item.unit} - Rs.${item.price * item.quantity}\n`;
-                total += item.price * item.quantity;
+                totalCount += item.qty;
+                totalPrice += (item.price * item.qty);
             });
-            message += `\nTotal Bill: Rs. ${total}\n\nPlease confirm my order.`;
-            
-            document.getElementById('whatsapp-checkout-link').href = `https://wa.me/94707103215?text=${encodeURIComponent(message)}`;
+
+            // Update Header badge & elements
+            document.getElementById('badge-count').textContent = totalCount;
+            document.getElementById('floating-item-count').textContent = `${totalCount} Items`;
+            document.getElementById('floating-total-price').textContent = `Rs. ${totalPrice}`;
+            document.getElementById('cart-total-price').textContent = `Rs. ${totalPrice}`;
+
+            // Show or hide floating bottom bar
+            const bar = document.getElementById('floating-basket-bar');
+            if(totalCount > 0) {
+                bar.classList.add('show');
+            } else {
+                bar.classList.remove('show');
+                toggleCart(false); // close sheet if empty
+            }
+
+            renderCartSheetItems();
         }
 
-        const toggleBtn = document.getElementById('theme-toggle');
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme'); document.body.classList.toggle('dark-theme');
-            toggleBtn.querySelector('i').className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
-        });
+        // Render Items inside Cart Sheet
+        function renderCartSheetItems() {
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+
+            if(cart.length === 0) {
+                list.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">ඔබේ බාස්කට් එක හිස්</div>';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemRow = document.createElement('div');
+                itemRow.className = 'cart-item';
+                itemRow.innerHTML = `
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.brand} | ${item.size} - Rs. ${item.price}</p>
+                    </div>
+                    <div class="item-qty-control">
+                        <button class="qty-btn" onclick="changeQty('${item.cartItemId}', -1)">-</button>
+                        <span style="font-weight:700; font-size:0.95rem;">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.cartItemId}', 1)">+</button>
+                    </div>
+                `;
+                list.appendChild(itemRow);
+            });
+        }
+
+        function changeQty(cartItemId, change) {
+            const index = cart.findIndex(item => item.cartItemId === cartItemId);
+            if(index > -1) {
+                cart[index].qty += change;
+                if(cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+                updateCartState();
+            }
+        }
+
+        function toggleCart(show) {
+            const sheet = document.getElementById('cart-sheet');
+            const overlay = document.getElementById('cart-overlay');
+            if (show) {
+                sheet.classList.add('open');
+                overlay.classList.add('open');
+            } else {
+                sheet.classList.remove('open');
+                overlay.classList.remove('open');
+            }
+        }
+
+        // Send Cart list formatted to WhatsApp
+        function sendToWhatsApp() {
+            if(cart.length === 0) return;
+
+            // ⚠️ මෙතන තියෙන 94771234567 වෙනුවට ඔයාගේ ඇත්තම WhatsApp නම්බර් එක දාන්න bro
+            let phoneNumber = "94771234567"; 
+            let message = "*New Order from Napana Premium Supermarket*\\n\\n";
+            let grandTotal = 0;
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.qty;
+                grandTotal += itemTotal;
+                message += `${index + 1}) *${item.name}*\\n`;
+                message += `   - Brand: ${item.brand}\\n`;
+                message += `   - Size: ${item.size}\\n`;
+                message += `   - Qty: ${item.qty} x Rs.${item.price} = *Rs.${itemTotal}*\\n\\n`;
+            });
+
+            message += `-------------------------\\n`;
+            message += `*Total Amount: Rs. ${grandTotal}*\\n\\n`;
+            message += `කරුණාකර මගේ ඇණවුම තහවුරු කර එවන්න.`;
+
+            let encodedMessage = encodeURIComponent(message);
+            let whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
