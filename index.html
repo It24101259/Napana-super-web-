@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Napana Super - Online Catalog</title>
+    <title>Napana Super - Online Catalog with Cart</title>
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,10 +37,9 @@
             flex-direction: column;
         }
 
-        /* Header / Logo Space */
         header {
             background: white;
-            padding: 15px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,42 +52,36 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+        .store-logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
         }
 
         .logo-text h1 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--dark-color);
-            line-height: 1;
+            line-height: 1.1;
         }
 
         .logo-text span {
             font-size: 11px;
-            color: var(--primary-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: #7f8c8d;
+            letter-spacing: 1px;
             font-weight: 600;
+            display: block;
+            margin-top: 2px;
         }
 
-        /* Hero Banner */
+        /* Updated Hero Banner with dynamic background image URL */
         .hero-banner {
             position: relative;
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 65vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.55)), url('https://i.ibb.co/ZzkZ21D5/0-FA322-F1-26-E1-49-A7-87-DF-2-BE3-ACCABCB6.png') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -99,27 +92,27 @@
         }
 
         .hero-banner h2 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
         }
 
         .hero-banner p {
             font-size: 18px;
             margin-bottom: 30px;
             opacity: 0.95;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 25px;
             border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 600;
         }
 
-        /* Shop Now Button */
         .btn-shop-now {
             background: linear-gradient(135deg, #ff9f43, var(--accent-color));
             color: white;
-            padding: 16px 40px;
+            padding: 16px 45px;
             font-size: 18px;
             font-weight: 600;
             border: none;
@@ -145,7 +138,7 @@
             100% { transform: scale(1); }
         }
 
-        /* Quick Action Contact Buttons */
+        /* Quick Actions Support custom mobile number */
         .quick-contact {
             display: flex;
             justify-content: center;
@@ -181,7 +174,7 @@
             font-size: 14px;
         }
 
-        /* --- 2. MAIN CATALOG SECTION (HIDDEN BY DEFAULT OR SCROLLABLE) --- */
+        /* --- 2. MAIN LAYOUT (CATALOG + CART) --- */
         .catalog-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -209,18 +202,17 @@
             border-radius: 2px;
         }
 
-        /* Category Tabs */
         .category-tabs {
             display: flex;
             gap: 10px;
             overflow-x: auto;
             padding-bottom: 15px;
             margin-bottom: 30px;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
 
         .category-tabs::-webkit-scrollbar {
-            display: none; /* Safari & Chrome */
+            display: none;
         }
 
         .tab-btn {
@@ -236,7 +228,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
@@ -246,86 +237,240 @@
             box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
         }
 
-        /* Products Grid */
+        /* Split layout for Catalog and live shopping cart */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
             background: white;
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #eeeded;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            position: relative;
         }
 
         .product-header {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 15px;
         }
 
         .product-icon {
-            width: 50px;
-            height: 50px;
+            width: 44px;
+            height: 44px;
             background: #f0fff4;
             color: var(--primary-color);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .product-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--dark-color);
         }
 
-        .price-select-box {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 8px;
+        /* Variant selection styled as custom radio rows */
+        .variant-container {
             margin-bottom: 15px;
+            background: #fdfdfd;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 5px;
         }
 
-        .variant-row {
+        .variant-row-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 4px 0;
-            font-size: 13px;
-            border-bottom: 1px dashed #e0e0e0;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f6f6f6;
         }
 
-        .variant-row:last-child {
+        .variant-row-item:last-child {
             border-bottom: none;
         }
 
-        .variant-name {
-            color: #555;
-            font-weight: 500;
+        .variant-row-item input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
         }
 
-        .variant-price {
-            color: var(--accent-color);
+        .variant-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .v-price {
             font-weight: 700;
+            color: var(--accent-color);
         }
 
-        /* --- 3. ABOUT & LOCATION SECTIONS --- */
+        .btn-add-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+            font-size: 13px;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #219653;
+        }
+
+        /* --- SHOPPING CART WINDOW VIEW --- */
+        .cart-box {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-box h3 {
+            font-size: 18px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-count-badge {
+            background: var(--accent-color);
+            color: white;
+            font-size: 12px;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .cart-items-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f6f6f6;
+            font-size: 13px;
+        }
+
+        .cart-item-details {
+            max-width: 70%;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .cart-item-meta {
+            font-size: 11px;
+            color: #7f8c8d;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-qty {
+            background: #eee;
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-total-section {
+            border-top: 2px dashed #f0f0f0;
+            padding-top: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .btn-checkout {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-checkout:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .empty-cart-text {
+            color: #aaa;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 14px;
+        }
+
+        /* --- ABOUT & LOCATION --- */
         .info-section {
             background: white;
             padding: 50px 20px;
@@ -345,7 +490,6 @@
             .info-wrapper {
                 grid-template-columns: 1fr;
             }
-            .hero-banner h2 { font-size: 28px; }
         }
 
         .about-box h3, .location-box h3 {
@@ -402,15 +546,13 @@
 
     <!-- WELCOME PAGE CONTAINER -->
     <div class="welcome-page">
-        <!-- Header with Logo -->
+        <!-- Header with Dynamic Logo -->
         <header>
             <div class="logo-container">
-                <div class="logo-icon">
-                    <i class="fa-solid fa-shop"></i>
-                </div>
+                <img src="https://i.ibb.co/FLSYfMC5/803-DD0-BD-1-E49-4-DB9-9-AE2-8-EAAE17390-C6.png" alt="Napana Super Logo" class="store-logo-img">
                 <div class="logo-text">
                     <h1>Napana Super</h1>
-                    <span>Grocery & Essentials</span>
+                    <span>Grocery & Essentials — Est. 2019</span>
                 </div>
             </div>
         </header>
@@ -424,18 +566,18 @@
             </button>
         </div>
 
-        <!-- Call & Whatsapp Quick Buttons -->
+        <!-- Call & Whatsapp Actions -->
         <div class="quick-contact">
-            <a href="tel:+94771234567" class="btn-call">
+            <a href="tel:+94707103215" class="btn-call">
                 <i class="fa-solid fa-phone"></i> Call Now
             </a>
-            <a href="https://wa.me/94771234567" target="_blank" class="btn-whatsapp">
+            <a href="https://wa.me/94707103215" target="_blank" class="btn-whatsapp">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
             </a>
         </div>
     </div>
 
-    <!-- PRODUCT CATALOG SECTION -->
+    <!-- PRODUCT CATALOG & CART SECTION -->
     <div class="catalog-container" id="catalog-section">
         <h2 class="section-title">අපගේ භාණ්ඩ එකතුව (Product Catalog)</h2>
         
@@ -450,9 +592,29 @@
             <button class="tab-btn" onclick="filterCategory('frozen')"><i class="fa-solid fa-ice-cream"></i> Frozen Items</button>
         </div>
 
-        <!-- Products Grid Container -->
-        <div class="products-grid" id="products-display">
-            <!-- Dynamic products will load via JavaScript below -->
+        <!-- Shop Grid / Sidebar split layout -->
+        <div class="shop-layout">
+            
+            <!-- Products display Column -->
+            <div class="products-grid" id="products-display">
+                <!-- Dynamic items loads here -->
+            </div>
+
+            <!-- Interactive Live Cart Sticky Sidebar -->
+            <div class="cart-box">
+                <h3><span><i class="fa-solid fa-basket-shopping" style="color:var(--primary-color);"></i> Cart</span> <span class="cart-count-badge" id="cart-count">0</span></h3>
+                <div class="cart-items-list" id="cart-items-container">
+                    <div class="empty-cart-text">Your cart is empty.<br>Select items to order.</div>
+                </div>
+                <div class="cart-total-section">
+                    <span>Total:</span>
+                    <span id="cart-total-amount">Rs. 0</span>
+                </div>
+                <button class="btn-checkout" id="checkout-btn" onclick="sendWhatsAppOrder()" disabled>
+                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                </button>
+            </div>
+
         </div>
     </div>
 
@@ -460,7 +622,7 @@
     <section class="info-section">
         <div class="info-wrapper">
             
-            <!-- About Us Block -->
+            <!-- About Us -->
             <div class="about-box">
                 <h3><i class="fa-solid fa-store" style="color: var(--primary-color);"></i> 🏪 About Us</h3>
                 <p>නපාන සුපර් වෙතින් සැමවිටම ඔබට ගුණාත්මකභාවයෙන් ඉහළ නැවුම් එළවළු, සිල්ලර බඩු සහ දෛනික අත්‍යවශ්‍ය ද්‍රව්‍ය ඉතා සාධාරණ මිල ගණන් යටතේ ලබාගත හැක.</p>
@@ -468,14 +630,13 @@
                 <span class="badge-years"><i class="fa-solid fa-award"></i> වසර ගණනාවක විශ්වාසනීය සේවය</span>
             </div>
 
-            <!-- Location & Hours Block -->
+            <!-- Location -->
             <div class="location-box">
                 <h3><i class="fa-solid fa-location-dot" style="color: #e74c3c;"></i> 📍 Location & Details</h3>
                 <div class="location-details">
                     <p><strong>Address:</strong> Napana Junction, Kandy Road, Sri Lanka.</p>
                     <p><strong>Opening Hours:</strong> Daily 7:30 AM - 9:30 PM</p>
                 </div>
-                <!-- Google Maps Embed -->
                 <div class="map-container">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1s0x3ae366268019b88f%3A0x280e224e7cb6f4e1!2sKandy!5e0!3m2!1sen!2slk!4v1680000000000!5m2!1sen!2slk" 
@@ -483,8 +644,7 @@
                         height="100%" 
                         style="border:0;" 
                         allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
+                        loading="lazy">
                     </iframe>
                 </div>
             </div>
@@ -496,61 +656,62 @@
         <p>&copy; 2026 Napana Super. All Rights Reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR DYNAMIC CATALOG & SMOOTH SCROLL -->
     <script>
-        // Large Scale Range Collection Database
+        // High quality extensive product list grouped inside categories
         const productsData = [
             // --- GROCERIES ---
-            { name: "Premium Keeri Samba", category: "groceries", icon: "fa-bowl-rice", variants: {"Araliya 5kg": "Rs. 1,280", "Nipuna 5kg": "Rs. 1,260", "1kg": "Rs. 260"} },
-            { name: "Nadu Rice (නාඩු සහල්)", category: "groceries", icon: "fa-bowl-rice", variants: {"Araliya 5kg": "Rs. 1,080", "1kg": "Rs. 220"} },
-            { name: "White Sugar (සීනි)", category: "groceries", icon: "fa-cubes", variants: {"1kg Pack": "Rs. 275", "500g": "Rs. 140"} },
-            { name: "Red Dhal (මයිසූර් පරිප්පු)", category: "groceries", icon: "fa-seedling", variants: {"1kg Premium": "Rs. 310", "500g": "Rs. 160"} },
-            { name: "Prima Wheat Flour (පිටි)", category: "groceries", icon: "fa-wheat-awn", variants: {"1kg Pack": "Rs. 230"} },
-            { name: "Fortune Coconut Oil", category: "groceries", icon: "fa-bottle-droplet", variants: {"1 Liter Bottle": "Rs. 650", "500ml": "Rs. 340"} },
-            { name: "Anchor Milk Powder", category: "groceries", icon: "fa-box", variants: {"400g Pack": "Rs. 1,150", "1kg Pack": "Rs. 2,750"} },
+            { id: "g1", name: "Premium Keeri Samba", category: "groceries", icon: "fa-bowl-rice", variants: [ {size: "1kg", price: 260}, {size: "5kg (Araliya)", price: 1280}, {size: "5kg (Nipuna)", price: 1260} ] },
+            { id: "g2", name: "Nadu Rice (නාඩු සහල්)", category: "groceries", icon: "fa-bowl-rice", variants: [ {size: "1kg", price: 220}, {size: "5kg Pack", price: 1080} ] },
+            { id: "g3", name: "White Sugar (සීනි)", category: "groceries", icon: "fa-cubes", variants: [ {size: "500g", price: 140}, {size: "1kg Pack", price: 275} ] },
+            { id: "g4", name: "Red Dhal (මයිසූර් පරිප්පු)", category: "groceries", icon: "fa-seedling", variants: [ {size: "500g", price: 160}, {size: "1kg Premium", price: 310} ] },
+            { id: "g5", name: "Prima Wheat Flour (පිටි)", category: "groceries", icon: "fa-wheat-awn", variants: [ {size: "1kg Pack", price: 230} ] },
+            { id: "g6", name: "Fortune Coconut Oil", category: "groceries", icon: "fa-bottle-droplet", variants: [ {size: "500ml", price: 340}, {size: "1 Liter Bottle", price: 650} ] },
+            { id: "g7", name: "Anchor Milk Powder", category: "groceries", icon: "fa-box", variants: [ {size: "400g Pack", price: 1150}, {size: "1kg Pack", price: 2750} ] },
             
             // --- BEVERAGES ---
-            { name: "Coca-Cola Original", category: "beverages", icon: "fa-bottle-water", variants: {"500ml": "Rs. 180", "1.25 Liter": "Rs. 320", "2 Liter": "Rs. 450"} },
-            { name: "Sprite Refreshing", category: "beverages", icon: "fa-bottle-water", variants: {"500ml": "Rs. 180", "1.25 Liter": "Rs. 320"} },
-            { name: "MD Mixed Fruit Cordial", category: "beverages", icon: "fa-jar", variants: {"750ml Bottle": "Rs. 650", "400ml": "Rs. 380"} },
-            { name: "Nestle Milo RTD Pack", category: "beverages", icon: "fa-box-tissue", variants: {"180ml Pack": "Rs. 120"} },
-            { name: "Watawala Tea Blend", category: "beverages", icon: "fa-mug-hot", variants: {"200g Pack": "Rs. 370", "400g Pack": "Rs. 720"} },
-            { name: "Nescafe Classic Coffee", category: "beverages", icon: "fa-mug-saucer", variants: {"50g Jar": "Rs. 650", "100g": "Rs. 1,200"} },
+            { id: "b1", name: "Coca-Cola Original", category: "beverages", icon: "fa-bottle-water", variants: [ {size: "500ml", price: 180}, {size: "1.25 Liter", price: 320}, {size: "2 Liter", price: 450} ] },
+            { id: "b2", name: "Sprite Refreshing", category: "beverages", icon: "fa-bottle-water", variants: [ {size: "500ml", price: 180}, {size: "1.25 Liter", price: 320} ] },
+            { id: "b3", name: "MD Mixed Fruit Cordial", category: "beverages", icon: "fa-jar", variants: [ {size: "400ml", price: 380}, {size: "750ml Bottle", price: 650} ] },
+            { id: "b4", name: "Nestle Milo RTD Pack", category: "beverages", icon: "fa-box-tissue", variants: [ {size: "180ml Pack", price: 120} ] },
+            { id: "b5", name: "Watawala Tea Blend", category: "beverages", icon: "fa-mug-hot", variants: [ {size: "200g Pack", price: 370}, {size: "400g Pack", price: 720} ] },
+            { id: "b6", name: "Nescafe Classic Coffee", category: "beverages", icon: "fa-mug-saucer", variants: [ {size: "50g Jar", price: 650}, {size: "100g Jar", price: 1200} ] },
 
             // --- HOUSEHOLD ITEMS ---
-            { name: "Sunlight Soap Bar", category: "household", icon: "fa-soap", variants: {"Twin Pack (150g x 2)": "Rs. 190", "4-in-1 Value Pack": "Rs. 370"} },
-            { name: "Vim Dishwash Liquid", category: "household", icon: "fa-faucet-drip", variants: {"500ml Bottle": "Rs. 410", "250ml": "Rs. 220"} },
-            { name: "Surf Excel Washing Powder", category: "household", icon: "fa-box-open", variants: {"500g Pack": "Rs. 380", "1kg Pack": "Rs. 740"} },
-            { name: "Harpic Toilet Cleaner", category: "household", icon: "fa-spray-can-sparkles", variants: {"500ml Power Plus": "Rs. 480", "750ml": "Rs. 650"} },
-            { name: "Comfort Fabric Softener", category: "household", icon: "fa-wind", variants: {"800ml Blue": "Rs. 980"} },
+            { id: "h1", name: "Sunlight Soap Bar", category: "household", icon: "fa-soap", variants: [ {size: "Twin Pack (150g x 2)", price: 190}, {size: "4-in-1 Pack", price: 370} ] },
+            { id: "h2", name: "Vim Dishwash Liquid", category: "household", icon: "fa-faucet-drip", variants: [ {size: "250ml", price: 220}, {size: "500ml Bottle", price: 410} ] },
+            { id: "h3", name: "Surf Excel Powder", category: "household", icon: "fa-box-open", variants: [ {size: "500g Pack", price: 380}, {size: "1kg Pack", price: 740} ] },
+            { id: "h4", name: "Harpic Toilet Cleaner", category: "household", icon: "fa-spray-can-sparkles", variants: [ {size: "500ml Power", price: 480}, {size: "750ml Max", price: 650} ] },
+            { id: "h5", name: "Comfort Fabric Softener", category: "household", icon: "fa-wind", variants: [ {size: "800ml Blue", price: 980} ] },
 
             // --- DAILY ESSENTIALS ---
-            { name: "Panadol Tablets (GSK)", category: "essentials", icon: "fa-capsules", variants: {"1 Card (12 Tabs)": "Rs. 150"} },
-            { name: "Signal Cavity Protection", category: "essentials", icon: "fa-tooth", variants: {"120g Tube": "Rs. 240", "160g Triple": "Rs. 310"} },
-            { name: "Lifebuoy Germ Protection", category: "essentials", icon: "fa-hand-holding-hand", variants: {"100g Soap": "Rs. 130", "Buy 3 Get 1 Pack": "Rs. 380"} },
-            { name: "Pantene Shampoo", category: "essentials", icon: "fa-pump-soap", variants: {"180ml Bottle": "Rs. 590", "330ml Large": "Rs. 980"} },
-            { name: "Baby Cheramy Soap", category: "essentials", icon: "fa-baby", variants: {"75g Floral": "Rs. 110", "125g Pink": "Rs. 170"} },
+            { id: "e1", name: "Panadol Tablets (GSK)", category: "essentials", icon: "fa-capsules", variants: [ {size: "1 Card (12 Tabs)", price: 150} ] },
+            { id: "e2", name: "Signal Cavity Protection", category: "essentials", icon: "fa-tooth", variants: [ {size: "120g Tube", price: 240}, {size: "160g Triple", price: 310} ] },
+            { id: "e3", name: "Lifebuoy Germ Protection", category: "essentials", icon: "fa-hand-holding-hand", variants: [ {size: "100g Soap", price: 130}, {size: "Buy 3 Get 1 Pack", price: 380} ] },
+            { id: "e4", name: "Pantene Shampoo", category: "essentials", icon: "fa-pump-soap", variants: [ {size: "180ml Bottle", price: 590}, {size: "330ml Large", price: 980} ] },
+            { id: "e5", name: "Baby Cheramy Soap", category: "essentials", icon: "fa-baby", variants: [ {size: "75g Floral", price: 110}, {size: "125g Pink", price: 170} ] },
 
             // --- CHILL ITEMS ---
-            { name: "Kotmale Fresh Milk Pack", category: "chill", icon: "fa-glass-water", variants: {"1 Liter Pack": "Rs. 480", "200ml": "Rs. 110"} },
-            { name: "Newdale Creamy Yoghurt", category: "chill", icon: "fa-spoon", variants: {"1 Cup": "Rs. 70", "6 Cup Multi-pack": "Rs. 410"} },
-            { name: "Highland Butter", category: "chill", icon: "fa-cheese", variants: {"200g Salted": "Rs. 750"} },
-            { name: "Happy Cow Cheese Wedges", category: "chill", icon: "fa-pizza-slice", variants: {"8 Portions Box": "Rs. 650", "24 Portions": "Rs. 1,850"} },
+            { id: "c1", name: "Kotmale Fresh Milk Pack", category: "chill", icon: "fa-glass-water", variants: [ {size: "200ml", price: 110}, {size: "1 Liter Pack", price: 480} ] },
+            { id: "c2", name: "Newdale Creamy Yoghurt", category: "chill", icon: "fa-spoon", variants: [ {size: "1 Cup", price: 70}, {size: "6 Cup Multi-pack", price: 410} ] },
+            { id: "c3", name: "Highland Butter", category: "chill", icon: "fa-cheese", variants: [ {size: "200g Salted", price: 750} ] },
+            { id: "c4", name: "Happy Cow Cheese Wedges", category: "chill", icon: "fa-pizza-slice", variants: [ {size: "8 Portions Box", price: 650}, {size: "24 Portions", price: 1850} ] },
 
             // --- FROZEN ITEMS ---
-            { name: "Bairaha Whole Chicken", category: "frozen", icon: "fa-drumstick-bite", variants: {"1kg Frozen with Skin": "Rs. 1,350", "1kg Skinless": "Rs. 1,450"} },
-            { name: "Keells Chicken Sausages", category: "frozen", icon: "fa-bacon", variants: {"500g Pack": "Rs. 850", "1kg Family Pack": "Rs. 1,650"} },
-            { name: "Keells Chicken Meatballs", category: "frozen", icon: "fa-circle-dot", variants: {"200g Pack": "Rs. 390", "500g Pack": "Rs. 880"} },
-            { name: "Elephant House Ice Cream", category: "frozen", icon: "fa-ice-cream", variants: {"1 Liter Vanilla": "Rs. 540", "2 Liter Family Pack": "Rs. 1,000"} },
-            { name: "Cargills Magic Chocolate", category: "frozen", icon: "fa-ice-cream", variants: {"1 Liter Premium": "Rs. 580"} }
+            { id: "f1", name: "Bairaha Whole Chicken", category: "frozen", icon: "fa-drumstick-bite", variants: [ {size: "1kg Frozen Skin", price: 1350}, {size: "1kg Skinless", price: 1450} ] },
+            { id: "f2", name: "Keells Chicken Sausages", category: "frozen", icon: "fa-bacon", variants: [ {size: "500g Pack", price: 850}, {size: "1kg Family Pack", price: 1650} ] },
+            { id: "f3", name: "Keells Chicken Meatballs", category: "frozen", icon: "fa-circle-dot", variants: [ {size: "200g Pack", price: 390}, {size: "500g Pack", price: 880} ] },
+            { id: "f4", name: "Elephant House Ice Cream", category: "frozen", icon: "fa-ice-cream", variants: [ {size: "1 Liter Vanilla", price: 540}, {size: "2 Liter Family", price: 1000} ] },
+            { id: "f5", name: "Cargills Magic Chocolate", category: "frozen", icon: "fa-ice-cream", variants: [ {size: "1 Liter Premium", price: 580} ] }
         ];
 
-        // Smooth scroll to catalog section
+        // Shopping Cart state management array
+        let cart = [];
+
         function scrollToCatalog() {
             document.getElementById('catalog-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Render products dynamically
+        // Render products into UI grid layout
         function displayProducts(categoryFilter = 'all') {
             const grid = document.getElementById('products-display');
             grid.innerHTML = '';
@@ -560,15 +721,18 @@
                 : productsData.filter(p => p.category === categoryFilter);
 
             filtered.forEach(product => {
-                let variantHTML = '';
-                for (const [size, price] of Object.entries(product.variants)) {
-                    variantHTML += `
-                        <div class="variant-row">
-                            <span class="variant-name">${size}</span>
-                            <span class="variant-price">${price}</span>
-                        </div>
+                let variantsHTML = '';
+                product.variants.forEach((v, index) => {
+                    variantsHTML += `
+                        <label class="variant-row-item">
+                            <input type="radio" name="variant_${product.id}" value="${index}" ${index === 0 ? 'checked' : ''}>
+                            <div class="variant-info">
+                                <span class="v-size">${v.size}</span>
+                                <span class="v-price">Rs. ${v.price}</span>
+                            </div>
+                        </label>
                     `;
-                }
+                });
 
                 const card = document.createElement('div');
                 card.className = 'product-card';
@@ -578,28 +742,127 @@
                             <div class="product-icon"><i class="fa-solid ${product.icon}"></i></div>
                             <div class="product-title">${product.name}</div>
                         </div>
-                        <div class="price-select-box">
-                            ${variantHTML}
+                        <div class="variant-container">
+                            ${variantsHTML}
                         </div>
                     </div>
+                    <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+                        <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                    </button>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // Category tabs switching logic
         function filterCategory(category) {
-            // Update active class on buttons
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            
             event.currentTarget.classList.add('active');
-            
-            // Re-render items
             displayProducts(category);
         }
 
-        // Initial loading invocation
+        // Add selected variant into Cart array
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const selectedRadio = document.querySelector(`input[name="variant_${productId}"]:checked`);
+            const variantIndex = parseInt(selectedRadio.value);
+            const variant = product.variants[variantIndex];
+
+            // Check if same item & variant combo already is in cart
+            const existingIndex = cart.findIndex(item => item.id === productId && item.variantSize === variant.size);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    variantSize: variant.size,
+                    price: variant.price,
+                    qty: 1
+                });
+            }
+            updateCartUI();
+        }
+
+        // Adjust quantities inside cart view
+        function changeQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        // Keep cart updates in complete synchronization with template UI
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalAmountEl = document.getElementById('cart-total-amount');
+            const countBadge = document.getElementById('cart-count');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart-text">Your cart is empty.<br>Select items to order.</div>';
+                totalAmountEl.innerText = 'Rs. 0';
+                countBadge.innerText = '0';
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            container.innerHTML = '';
+            let total = 0;
+            let totalItemsCount = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                totalItemsCount += item.qty;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-meta">${item.variantSize} - Rs. ${item.price}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="btn-qty" onclick="changeQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            totalAmountEl.innerText = `Rs. ${total.toLocaleString()}`;
+            countBadge.innerText = totalItemsCount;
+            checkoutBtn.disabled = false;
+        }
+
+        // Compile and format raw WhatsApp message text to send out securely
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) return;
+
+            let message = `*New Order - Napana Super*\n`;
+            message += `---------------------------------------\n`;
+            
+            let total = 0;
+            cart.forEach((item, idx) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                message += `${idx + 1}. ${item.name} (${item.variantSize}) x ${item.qty} = Rs. ${subtotal}\n`;
+            });
+
+            message += `---------------------------------------\n`;
+            message += `*Total Amount:* Rs. ${total.toLocaleString()}\n\n`;
+            message += `Please confirm my order. Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/94707103215?text=${encodedMessage}`;
+            
+            // Open user's client app window safely
+            window.open(whatsappURL, '_blank');
+        }
+
         window.onload = function() {
             displayProducts('all');
         };
