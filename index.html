@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Napana Super - Premium Grocery Experience</title>
+    <title>Napana Super - Premium Shopping Hub</title>
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #00b894;
-            --primary-dark: #009432;
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
             --secondary: #0984e3;
-            --accent: #e17055;
-            --dark: #2d3436;
-            --gray-light: #f8f9fa;
-            --gray-border: #edf2f7;
-            --radius-lg: 20px;
-            --radius-md: 12px;
-            --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --accent: #ff7675;
+            --dark: #1e272e;
+            --gray-light: #f5f6fa;
+            --gray-border: #dcdde1;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow-premium: 0 12px 40px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 6px 20px rgba(0,0,0,0.03);
         }
 
         * {
@@ -30,25 +31,24 @@
         }
 
         body {
-            background-color: #f6f9fc;
+            background-color: #f8f9fa;
             color: var(--dark);
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        /* --- NAVIGATION BAR --- */
+        /* --- STICKY MODERN HEADER --- */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.02);
             position: sticky;
             top: 0;
             z-index: 999;
-            border-bottom: 1px solid var(--gray-border);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .logo-container {
@@ -61,10 +61,11 @@
             height: 55px;
             width: auto;
             border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .logo-text h1 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--dark);
             letter-spacing: -0.5px;
@@ -72,7 +73,7 @@
 
         .logo-text span {
             font-size: 11px;
-            color: #b2bec3;
+            color: #7f8c8d;
             font-weight: 600;
             display: block;
         }
@@ -84,10 +85,10 @@
         }
 
         .btn-auth {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: var(--radius-md);
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             border: none;
             transition: all 0.2s ease;
@@ -99,7 +100,6 @@
         .btn-customer-login {
             background: var(--gray-light);
             color: var(--dark);
-            border: 1px solid var(--gray-border);
         }
 
         .btn-admin-login {
@@ -112,11 +112,11 @@
             box-shadow: var(--shadow-premium);
         }
 
-        /* --- PREMIUM HERO BANNER --- */
+        /* --- HERO BANNER --- */
         .hero-banner {
             position: relative;
-            height: 55vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://i.ibb.co/ZzkZ21D5/0-FA322-F1-26-E1-49-A7-87-DF-2-BE3-ACCABCB6.png') no-repeat center center/cover;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://i.ibb.co/ZzkZ21D5/0-FA322-F1-26-E1-49-A7-87-DF-2-BE3-ACCABCB6.png') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -124,182 +124,169 @@
             text-align: center;
             color: white;
             padding: 20px;
-            margin: 20px;
+            margin: 25px;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-premium);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
 
         .hero-banner h2 {
-            font-size: 46px;
+            font-size: 52px;
             font-weight: 800;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            letter-spacing: -1.5px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .hero-banner p {
-            font-size: 16px;
-            margin: 15px 0 30px 0;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            padding: 6px 20px;
+            font-size: 18px;
+            margin: 15px 0 35px 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 8px 28px;
             border-radius: 30px;
-            font-weight: 500;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .btn-shop-now {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, #1abc9c, var(--primary-dark));
             color: white;
-            padding: 16px 40px;
+            padding: 18px 45px;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 12px 25px rgba(46, 204, 113, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .btn-shop-now:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(0, 184, 148, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.6);
         }
 
-        /* Contact strip */
-        .quick-contact {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: -15px auto 40px auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .contact-pill {
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-        }
-        .pill-call { background: white; color: #2980b9; }
-        .pill-wa { background: #25D366; color: white; }
-        .contact-pill:hover { transform: translateY(-2px); }
-
-        /* --- MAIN LAYOUT WITH STICKY CART --- */
+        /* --- LAYOUT CONFIGURATION --- */
         .main-shop-container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 40px;
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 390px;
             gap: 40px;
             align-items: start;
         }
 
-        @media (max-width: 1024px) {
-            .main-shop-container {
-                grid-template-columns: 1fr;
-            }
-            .cart-sidebar-wrapper {
-                display: none; /* Hide standard sidebar on mobile, use modern bottom drawer instead */
-            }
+        @media (max-width: 1150px) {
+            .main-shop-container { grid-template-columns: 1fr; padding: 0 20px; }
+            .cart-sidebar-wrapper { display: none; } /* Mobile uses lower floating tray */
         }
 
-        /* CATEGORIES */
-        .section-header {
-            margin-bottom: 25px;
-        }
-
-        .section-header h2 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
+        /* CATEGORIES PILLS */
         .category-scroll {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            padding: 5px 5px 20px 5px;
+            margin-bottom: 35px;
             scrollbar-width: none;
         }
         .category-scroll::-webkit-scrollbar { display: none; }
 
         .cat-chip {
             background: white;
-            border: 1px solid var(--gray-border);
-            padding: 10px 20px;
+            border: 1px solid #e1b12c00;
+            padding: 12px 24px;
             border-radius: 30px;
             cursor: pointer;
             white-space: nowrap;
-            font-weight: 600;
-            font-size: 13px;
-            color: #636e72;
+            font-weight: 700;
+            font-size: 14px;
+            color: #485460;
+            box-shadow: var(--shadow-card);
             transition: all 0.2s ease;
         }
 
         .cat-chip.active {
             background: var(--dark);
             color: white;
-            border-color: var(--dark);
         }
 
-        /* PRODUCT PREMIUM CARDS */
+        /* --- PREMIUM GRID INTERFACE --- */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .premium-card {
             background: white;
             border-radius: var(--radius-lg);
-            padding: 24px;
+            overflow: hidden;
             box-shadow: var(--shadow-premium);
-            border: 1px solid rgba(0,0,0,0.01);
+            border: 1px solid rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .premium-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
-        .p-icon-box {
-            width: 50px;
-            height: 50px;
-            background: var(--gray-light);
-            border-radius: var(--radius-md);
+        .p-img-container {
+            width: 100%;
+            height: 180px;
+            background: #f7f9fa;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            color: var(--primary);
-            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .p-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .premium-card:hover .p-img-container img {
+            transform: scale(1.08);
+        }
+
+        .p-fallback-icon {
+            font-size: 50px;
+            color: #dcdde1;
+        }
+
+        .p-details-box {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .p-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 15px;
-            min-height: 44px;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .v-selector-box {
             background: var(--gray-light);
             border-radius: var(--radius-md);
-            padding: 6px;
-            margin-bottom: 20px;
+            padding: 8px;
+            margin-bottom: 15px;
         }
 
         .v-option {
@@ -307,32 +294,28 @@
             align-items: center;
             justify-content: space-between;
             padding: 8px 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 13px;
-            margin-bottom: 2px;
-            transition: background 0.2s;
+            margin-bottom: 4px;
         }
         .v-option:last-child { margin-bottom: 0; }
+        .v-option input { accent-color: var(--primary); margin-right: 8px; }
+        .v-opt-price { font-weight: 800; color: #e17055; }
 
-        .v-option input {
-            accent-color: var(--primary);
-            margin-right: 8px;
+        /* MULTI-ADD / CARD CONTROL BAR */
+        .card-action-trigger {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
-        .v-option:hover { background: rgba(0,0,0,0.02); }
-
-        .v-opt-price {
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .btn-add-to-cart {
-            background: var(--gray-light);
-            color: var(--dark);
-            border: 1px solid var(--gray-border);
-            width: 100%;
-            padding: 12px;
+        .btn-main-add {
+            flex: 1;
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 14px;
             border-radius: var(--radius-md);
             font-weight: 700;
             font-size: 13px;
@@ -344,19 +327,38 @@
             transition: all 0.2s;
         }
 
-        .premium-card:hover .btn-add-to-cart {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+        .btn-main-add:hover {
+            background: var(--primary-dark);
         }
 
-        /* --- PREMIUM SIDEBAR CART (DESKTOP) --- */
+        /* Embedded Inline Card Quantity Counters */
+        .card-qty-counter {
+            display: none; /* Active via JS */
+            align-items: center;
+            justify-content: space-between;
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: var(--radius-md);
+            flex: 1;
+            font-weight: 700;
+        }
+
+        .card-qty-counter button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none; color: white; width: 28px; height: 28px;
+            border-radius: 50%; font-size: 16px; font-weight: bold;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .card-qty-counter button:hover { background: rgba(255, 255, 255, 0.4); }
+
+        /* --- DESKTOP STICKY SIDEBAR CART --- */
         .cart-sidebar-panel {
             background: white;
             border-radius: var(--radius-lg);
-            padding: 26px;
+            padding: 30px;
             box-shadow: var(--shadow-premium);
-            border: 1px solid var(--gray-border);
+            border: 1px solid rgba(0,0,0,0.02);
             position: sticky;
             top: 100px;
         }
@@ -366,252 +368,104 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--gray-border);
+            border-bottom: 2px solid var(--gray-light);
             margin-bottom: 20px;
         }
 
-        .cart-header h3 {
-            font-size: 18px;
-            font-weight: 800;
-        }
+        .cart-header h3 { font-size: 19px; font-weight: 800; }
+        .cart-badge { background: #ff7675; color: white; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
 
-        .cart-badge {
-            background: var(--accent);
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .cart-list {
-            max-height: 320px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
+        .cart-list { max-height: 340px; overflow-y: auto; margin-bottom: 20px; }
+        
         .cart-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--gray-light);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 0; border-bottom: 1px solid var(--gray-light);
         }
-
-        .cart-row-info h4 {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .cart-row-info p {
-            font-size: 11px;
-            color: #a0aec0;
-            margin-top: 2px;
-        }
+        .cart-row-info h4 { font-size: 14px; font-weight: 700; color: var(--dark); }
+        .cart-row-info p { font-size: 11px; color: #a0aec0; margin-top: 2px; }
 
         .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gray-light);
-            padding: 4px 8px;
-            border-radius: 20px;
+            display: flex; align-items: center; gap: 10px; background: var(--gray-light); padding: 5px 10px; border-radius: 20px;
         }
-
         .btn-qty-action {
-            background: white;
-            border: 1px solid var(--gray-border);
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: white; border: 1px solid var(--gray-border); width: 24px; height: 24px; border-radius: 50%;
+            cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center;
         }
 
         .cart-summary-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 800;
-            font-size: 18px;
-            padding: 15px 0;
-            border-top: 2px dashed var(--gray-border);
-            margin-bottom: 20px;
+            display: flex; justify-content: space-between; font-weight: 800; font-size: 19px;
+            padding-top: 15px; border-top: 2px dashed var(--gray-border); margin-bottom: 20px;
         }
 
         .btn-whatsapp-checkout {
             background: linear-gradient(135deg, #25D366, #1ebd59);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
-            transition: all 0.2s;
+            color: white; border: none; width: 100%; padding: 16px; border-radius: var(--radius-md);
+            font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
         }
 
-        .btn-whatsapp-checkout:disabled {
-            background: #cbd5e0;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
+        .btn-whatsapp-checkout:disabled { background: #cbd5e0; cursor: not-allowed; box-shadow: none; }
+        .empty-cart-msg { text-align: center; color: #b2bec3; padding: 40px 0; font-size: 13px; }
 
-        /* --- MOBILE FLOATING CART & DRAWER --- */
+        /* --- MOBILE BOTTOM FLOATING STATUS BAR --- */
         .mobile-floating-cart-bar {
             display: none;
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: var(--dark);
-            color: white;
-            padding: 16px 24px;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            justify-content: space-between;
-            align-items: center;
-            z-index: 998;
+            bottom: 25px; left: 20px; right: 20px;
+            background: var(--dark); color: white; padding: 18px 28px;
+            border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            justify-content: space-between; align-items: center; z-index: 998;
             cursor: pointer;
+            animation: slideUp 0.4s ease;
         }
+        @keyframes slideUp { from { transform: translateY(100px); opacity:0; } to { transform: translateY(0); opacity:1; } }
 
-        @media (max-width: 1024px) {
-            .mobile-floating-cart-bar.active { display: flex; }
-        }
+        @media (max-width: 1150px) { .mobile-floating-cart-bar.active { display: flex; } }
 
-        /* Slide-out Drawer Panel for Mobile Cart view */
+        /* MOBILE CART DRAWER SLIDE SYSTEM */
         .mobile-cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1001;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 420px; height: 100%;
+            background: white; z-index: 1001; box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 30px;
+            display: flex; flex-direction: column;
         }
-
         .mobile-cart-drawer.open { right: 0; }
-
         .drawer-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 1000;
         }
         .drawer-overlay.open { display: block; }
 
-        /* --- AUTHENTICATION MODAL DIALOGS --- */
+        /* --- AUTHENTICATION MODALS --- */
         .modal-overlay {
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
+            position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 2000;
         }
+        .auth-modal { background: white; border-radius: var(--radius-lg); padding: 35px; width: 90%; max-width: 420px; position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 18px; color: #a0aec0; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #718096; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--gray-border); background: var(--gray-light); font-size: 14px; font-weight: 600; outline: none; }
+        .btn-submit-auth { width: 100%; padding: 14px; background: var(--dark); color: white; border: none; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; margin-top: 10px; }
 
-        .auth-modal {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 35px;
-            width: 90%;
-            max-width: 420px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px; right: 20px;
-            cursor: pointer; font-size: 18px; color: #a0aec0;
-        }
-
-        .auth-modal h3 {
-            font-size: 22px; font-weight: 800; margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #718096;
-        }
-
-        .form-group input {
-            width: 100%; padding: 12px 16px; border-radius: var(--radius-md);
-            border: 1px solid var(--gray-border); background: var(--gray-light);
-            font-size: 14px; font-weight: 600; outline: none;
-        }
-
-        .btn-submit-auth {
-            width: 100%; padding: 14px; background: var(--dark); color: white;
-            border: none; border-radius: var(--radius-md); font-weight: 700;
-            cursor: pointer; margin-top: 10px;
-        }
-
-        /* --- ADMIN DASHBOARD PANEL PANEL --- */
+        /* --- ADMIN INTERFACE --- */
         .admin-dashboard-section {
-            display: none;
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 30px;
-            background: #ebf8fa;
-            border: 2px dashed #00b894;
-            border-radius: var(--radius-lg);
+            display: none; max-width: 1400px; margin: 30px auto; padding: 30px;
+            background: #ebf8fa; border: 2px dashed var(--primary); border-radius: var(--radius-lg);
         }
-
-        .dashboard-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-        }
-
-        .admin-grid {
-            display: grid; grid-template-columns: 1fr 2fr; gap: 30px;
-        }
-
+        .admin-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; margin-top: 20px; }
         @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
-
-        .admin-box { background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-premium); }
-
+        .admin-box { background: white; padding: 25px; border-radius: var(--radius-md); box-shadow: var(--shadow-premium); }
         .admin-table-wrapper { overflow-x: auto; }
         .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .admin-table th, .admin-table td { padding: 10px; text-align: left; border-bottom: 1px solid #edf2f7; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #edf2f7; }
         .admin-table th { background: #f7fafc; font-weight: 700; }
 
-        .empty-cart-msg { text-align: center; color: #a0aec0; padding: 40px 0; font-size: 13px; }
-
-        /* FOOTER & EXTRA INFO */
-        .info-footer-section {
-            background: white; border-top: 1px solid var(--gray-border);
-            padding: 50px 5%; margin-top: 60px;
-        }
-        .info-grid {
-            max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
-        }
+        /* FOOTER & EXTRA MAP INFO */
+        .info-footer-section { background: white; border-top: 1px solid var(--gray-border); padding: 50px 5%; margin-top: 60px; }
+        .info-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
-        
-        footer {
-            background: var(--dark); color: #cbd5e0; text-align: center; padding: 25px; font-size: 12px; font-weight: 500;
-        }
+        footer { background: var(--dark); color: #cbd5e0; text-align: center; padding: 25px; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -622,7 +476,7 @@
             <img src="https://i.ibb.co/FLSYfMC5/803-DD0-BD-1-E49-4-DB9-9-AE2-8-EAAE17390-C6.png" alt="Napana Super Logo" class="store-logo-img">
             <div class="logo-text">
                 <h1>Napana Super</h1>
-                <span>Est. 2019 — Premium Grocer</span>
+                <span>Est. 2019 — Premium Grocery Hub</span>
             </div>
         </div>
         <div class="nav-actions">
@@ -630,37 +484,45 @@
                 <i class="fa-regular fa-user"></i> Customer Login
             </button>
             <button class="btn-auth btn-admin-login" id="admin-nav-btn" onclick="toggleModal('admin-modal', true)">
-                <i class="fa-solid fa-lock"></i> Admin Portal
+                <i class="fa-solid fa-lock"></i> Admin Panel
             </button>
         </div>
     </header>
 
-    <!-- ADMIN DASHBOARD CONTAINER (HIDDEN DEFAULT) -->
+    <!-- ADMIN PANEL BACKOFFICE -->
     <section class="admin-dashboard-section" id="admin-panel">
-        <div class="dashboard-header">
-            <h3><i class="fa-solid fa-gauge"></i> Management Console (Admin Mode)</h3>
-            <button class="btn-auth" style="background: #e53e3e; color: white;" onclick="logoutAdmin()">Logout</button>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3><i class="fa-solid fa-user-gear"></i> Catalog Live Stock Control</h3>
+            <button class="btn-auth" style="background: #ff7675; color: white;" onclick="logoutAdmin()">Exit Dashboard</button>
         </div>
         <div class="admin-grid">
             <div class="admin-box">
-                <h4>Add New Catalog Product</h4>
+                <h4>Create New Product Card</h4>
                 <div style="margin-top: 15px;">
-                    <div class="form-group"><label>Product Title</label><input type="text" id="adm-name" placeholder="eg: Fresh Tomatoes"></div>
+                    <div class="form-group"><label>Product Name</label><input type="text" id="adm-name" placeholder="eg: Fresh Eggs Pack"></div>
                     <div class="form-group">
-                        <label>Category Group</label>
-                        <input type="text" id="adm-cat" placeholder="groceries / beverages / household / essentials / chill / frozen">
+                        <label>Category Stream</label>
+                        <select id="adm-cat">
+                            <option value="groceries">Groceries</option>
+                            <option value="beverages">Beverages</option>
+                            <option value="household">Household</option>
+                            <option value="essentials">Essentials</option>
+                            <option value="chill">Chill Corner</option>
+                            <option value="frozen">Frozen Goods</option>
+                        </select>
                     </div>
-                    <div class="form-group"><label>Variant Size</label><input type="text" id="adm-size" placeholder="eg: 1kg"></div>
-                    <div class="form-group"><label>Price (Rs.)</label><input type="number" id="adm-price" placeholder="eg: 350"></div>
-                    <button class="btn-submit-auth" style="background: var(--primary);" onclick="adminAddProduct()">Insert Item</button>
+                    <div class="form-group"><label>Image URL (පින්තූරයේ ලින්ක් එක)</label><input type="text" id="adm-img" placeholder="https://image-link.com/pic.png"></div>
+                    <div class="form-group"><label>Volume / Size</label><input type="text" id="adm-size" placeholder="eg: 10 Pack"></div>
+                    <div class="form-group"><label>Price Tag (Rs.)</label><input type="number" id="adm-price" placeholder="eg: 380"></div>
+                    <button class="btn-submit-auth" style="background: var(--primary-dark);" onclick="adminAddProduct()">Deploy Product Card</button>
                 </div>
             </div>
             <div class="admin-box">
-                <h4>Active Inventory Live Stock Prices</h4>
+                <h4>Live Inventory Stock List</h4>
                 <div class="admin-table-wrapper" style="margin-top: 15px;">
                     <table class="admin-table">
                         <thead>
-                            <tr><th>ID</th><th>Item Name</th><th>Category</th><th>Size</th><th>Price</th><th>Action</th></tr>
+                            <tr><th>ID</th><th>Item Info</th><th>Category</th><th>Size</th><th>Price</th><th>Action</th></tr>
                         </thead>
                         <tbody id="admin-table-rows"></tbody>
                     </table>
@@ -669,160 +531,128 @@
         </div>
     </section>
 
-    <!-- HERO BANNER -->
+    <!-- MAIN HERO BANNER -->
     <div class="hero-banner">
-        <h2>Napana Super</h2>
-        <p><i class="fa-solid fa-shield-halved"></i> Daily Fresh Products & Instant WhatsApp Checkout</p>
-        <button class="btn-shop-now" onclick="document.getElementById('shop-area').scrollIntoView({behavior:'smooth'})">
-            Start Shopping <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+        <h2>Napana Super Market</h2>
+        <p><i class="fa-solid fa-basket-shopping" style="color:var(--primary);"></i> Freshness Guaranteed • Order Multiple Items Easily</p>
+        <button class="btn-shop-now" onclick="document.getElementById('shop-view-anchor').scrollIntoView({behavior:'smooth'})">
+            Explore Products Grid <i class="fa-solid fa-circle-chevron-down"></i>
         </button>
     </div>
 
-    <!-- QUICK CONTACTS -->
-    <div class="quick-contact">
-        <a href="tel:+94707103215" class="contact-pill pill-call"><i class="fa-solid fa-phone"></i> Call Order</a>
-        <a href="https://wa.me/94707103215" target="_blank" class="contact-pill pill-wa"><i class="fa-brands fa-whatsapp"></i> Chat Support</a>
-    </div>
-
-    <!-- MAIN INTERACTIVE SHOP LAYOUT -->
-    <main class="main-shop-container" id="shop-area">
+    <!-- MAIN VIEWPORT GRID SYSTEM -->
+    <main class="main-shop-container" id="shop-view-anchor">
         
-        <!-- Left Side: Catalog Stream -->
-        <div class="catalog-stream">
-            <div class="section-header">
-                <h2>Browse Catalog</h2>
-            </div>
-            
+        <!-- Left Section: Catalog Area -->
+        <div>
             <div class="category-scroll">
-                <div class="cat-chip active" onclick="filterCategory('all', this)">All Category</div>
+                <div class="cat-chip active" onclick="filterCategory('all', this)">All Products</div>
                 <div class="cat-chip" onclick="filterCategory('groceries', this)">Groceries</div>
                 <div class="cat-chip" onclick="filterCategory('beverages', this)">Beverages</div>
                 <div class="cat-chip" onclick="filterCategory('household', this)">Household</div>
                 <div class="cat-chip" onclick="filterCategory('essentials', this)">Essentials</div>
-                <div class="cat-chip" onclick="filterCategory('chill', this)">Chill Corner</div>
-                <div class="cat-chip" onclick="filterCategory('frozen', this)">Frozen Goods</div>
+                <div class="cat-chip" onclick="filterCategory('chill', this)">Chill Section</div>
+                <div class="cat-chip" onclick="filterCategory('frozen', this)">Frozen Items</div>
             </div>
 
-            <div class="products-grid" id="catalog-products-view">
-                <!-- Products dynamically populating -->
+            <!-- Enhanced Premium Cards Stream -->
+            <div class="products-grid" id="premium-products-view">
+                <!-- Javascript maps catalog nodes here -->
             </div>
         </div>
 
-        <!-- Right Side: Standard Desktop Sidebar Sticky Cart -->
+        <!-- Right Section: Desktop Sidebar Persistent Cart -->
         <div class="cart-sidebar-wrapper">
             <div class="cart-sidebar-panel">
                 <div class="cart-header">
-                    <h3>Shopping Bag</h3>
+                    <h3>Shopping Cart</h3>
                     <span class="cart-badge" id="sidebar-badge">0 Items</span>
                 </div>
                 <div class="cart-list" id="sidebar-items-list">
-                    <div class="empty-cart-msg">Your shopping cart is completely empty.</div>
+                    <div class="empty-cart-msg">Your shopping bag is empty.</div>
                 </div>
                 <div class="cart-summary-total">
                     <span>Grand Total:</span>
                     <span id="sidebar-total-cost">Rs. 0</span>
                 </div>
                 <button class="btn-whatsapp-checkout" id="sidebar-checkout-btn" onclick="triggerWhatsAppSubmit()" disabled>
-                    <i class="fa-brands fa-whatsapp"></i> Checkout Order via WhatsApp
+                    <i class="fa-brands fa-whatsapp"></i> Dispatch Order via WhatsApp
                 </button>
             </div>
         </div>
 
     </main>
 
-    <!-- MOBILE FLOATING LOWER NOTIFICATION BAR -->
+    <!-- MOBILE LOWER TRAY FLOATING CONTROLLER -->
     <div class="mobile-floating-cart-bar" id="mobile-float-bar" onclick="openMobileDrawer()">
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-basket-shopping" style="font-size: 20px; color: var(--primary);"></i>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <i class="fa-solid fa-cart-shopping" style="font-size: 22px; color: var(--primary);"></i>
             <div>
-                <strong id="mobile-float-count">0 Items Added</strong>
-                <p style="font-size: 11px; color: #b2bec3; margin-top: 1px;">View Shopping Cart</p>
+                <strong id="mobile-float-count">0 Items</strong>
+                <p style="font-size: 11px; color: #cbd5e0; margin-top: 1px;">Click to view summary list</p>
             </div>
         </div>
-        <span style="font-weight: 800; font-size: 16px; color: var(--primary);" id="mobile-float-total">Rs. 0</span>
+        <span style="font-weight: 800; font-size: 18px; color: var(--primary);" id="mobile-float-total">Rs. 0</span>
     </div>
 
-    <!-- MOBILE OVERLAY & SLIDE DRAWER PANEL -->
+    <!-- MOBILE DRAWER PANEL COMPONENT -->
     <div class="drawer-overlay" id="cart-drawer-overlay" onclick="closeMobileDrawer()"></div>
     <div class="mobile-cart-drawer" id="mobile-cart-drawer-panel">
         <div class="cart-header">
-            <h3>Your Cart</h3>
-            <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px;" onclick="closeMobileDrawer()"></i>
+            <h3>Selected Summary</h3>
+            <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 22px;" onclick="closeMobileDrawer()"></i>
         </div>
         <div class="cart-list" id="drawer-items-list" style="flex: 1;">
-            <div class="empty-cart-msg">Your shopping cart is completely empty.</div>
+            <div class="empty-cart-msg">Your bag is empty.</div>
         </div>
         <div class="cart-summary-total">
             <span>Grand Total:</span>
             <span id="drawer-total-cost">Rs. 0</span>
         </div>
         <button class="btn-whatsapp-checkout" id="drawer-checkout-btn" onclick="triggerWhatsAppSubmit()" disabled>
-            <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> Checkout Order via WhatsApp
         </button>
     </div>
 
-    <!-- CUSTOMER LOGIN MODAL -->
-    <div class="modal-overlay" id="customer-modal">
-        <div class="auth-modal">
-            <i class="fa-solid fa-xmark close-modal" onclick="toggleModal('customer-modal', false)"></i>
-            <h3>Customer Sign In</h3>
-            <div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="eg: 0771234567"></div>
-            <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
-            <button class="btn-submit-auth" onclick="simulateCustomerLogin()">Log In Securely</button>
-        </div>
-    </div>
+    <!-- AUTHENTICATION DIALOGS -->
+    <div class="modal-overlay" id="customer-modal"><div class="auth-modal"><i class="fa-solid fa-xmark close-modal" onclick="toggleModal('customer-modal', false)"></i><h3>Customer Access</h3><div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="07xxxxxxxx"></div><button class="btn-submit-auth" onclick="toggleModal('customer-modal',false)">Login</button></div></div>
+    <div class="modal-overlay" id="admin-modal"><div class="auth-modal"><i class="fa-solid fa-xmark close-modal" onclick="toggleModal('admin-modal', false)"></i><h3>Store Admin Login</h3><div class="form-group"><label>Username</label><input type="text" id="adm-user"></div><div class="form-group"><label>Password</label><input type="password" id="adm-pass"></div><button class="btn-submit-auth" onclick="verifyAdminAccess()">Unlock Dashboard</button></div></div>
 
-    <!-- ADMIN LOGIN MODAL -->
-    <div class="modal-overlay" id="admin-modal">
-        <div class="auth-modal">
-            <i class="fa-solid fa-xmark close-modal" onclick="toggleModal('admin-modal', false)"></i>
-            <h3>Admin Portal Access</h3>
-            <div class="form-group"><label>Username</label><input type="text" id="adm-user" placeholder="Enter Admin User"></div>
-            <div class="form-group"><label>Secret Passcode</label><input type="password" id="adm-pass" placeholder="Enter Password"></div>
-            <button class="btn-submit-auth" onclick="verifyAdminAccess()">Unlock Console</button>
-        </div>
-    </div>
-
-    <!-- EXTRA MAP & DETAILS INFO SECTION -->
+    <!-- INFORMATION MAP SEGMENT -->
     <section class="info-footer-section">
         <div class="info-grid">
             <div>
-                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 15px;">🏪 About Our Supermarket</h3>
-                <p style="color: #636e72; font-size: 14px; line-height: 1.8;">නපාන සුපර් වෙතින් සැමවිටම ඔබට ගුණාත්මකභාවයෙන් ඉහළ නැවුම් එළවළු, සිල්ලර බඩු සහ දෛනික අත්‍යවශ්‍ය ද්‍රව්‍ය ඉතා සාධාරණ මිල ගණන් යටතේ ලබාගත හැක. 2019 වසරේ සිට අඛණ්ඩව පාරිභෝගික විශ්වාසය දිනාගෙන ඇත.</p>
+                <h3 style="font-weight: 800; margin-bottom: 15px;">🏪 Napana Supermarket</h3>
+                <p style="color: #636e72; font-size: 14px; line-height: 1.8;">2019 වසරේ සිට කඩිසර සහ සුහදශීලී සේවාවක් සපයන විශ්වාසනීය සිල්ලර වෙළඳ මධ්‍යස්ථානය. දැන් ඔබට අවශ්‍ය සියලුම දේ තනි ඇණවුමක් ලෙස අපගේ WhatsApp සේවාව හරහා වෙන්කරවා ගත හැක.</p>
             </div>
             <div>
-                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 15px;">📍 Store Locator</h3>
-                <p style="color: #636e72; font-size: 14px; margin-bottom: 15px;">Napana Junction, Kandy Road, Sri Lanka. (Open: 7:30 AM - 9:30 PM)</p>
-                <div style="height: 180px; border-radius: 12px; overflow: hidden;">
+                <h3 style="font-weight: 800; margin-bottom: 15px;">📍 Location Outlet</h3>
+                <p style="color: #636e72; font-size: 14px; margin-bottom: 15px;">Napana Junction, Kandy Road, Sri Lanka. (Daily 7:30 AM - 9:30 PM)</p>
+                <div style="height: 180px; border-radius: var(--radius-md); overflow: hidden;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1s0x3ae366268019b88f%3A0x280e224e7cb6f4e1!2sKandy!5e0!3m2!1sen!2slk!4v1680000000000!5m2!1sen!2slk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Napana Super Market. Designed with Premium Checkout.</p>
-    </footer>
+    <footer><p>&copy; 2026 Napana Super. Designed with Continuous Multi-Item Cart Engine.</p></footer>
 
     <script>
-        // High Quality Initial Mock Database
+        // Data Store Engine 
         let productsData = [
-            { id: "p1", name: "Premium Keeri Samba", category: "groceries", icon: "fa-bowl-rice", variants: [ {size: "1kg", price: 260}, {size: "5kg Bag", price: 1280} ] },
-            { id: "p2", name: "White Sugar (සීනි)", category: "groceries", icon: "fa-cubes", variants: [ {size: "1kg Pack", price: 275} ] },
-            { id: "p3", name: "Red Dhal (මයිසූර් පරිප්පු)", category: "groceries", icon: "fa-seedling", variants: [ {size: "1kg Premium", price: 310} ] },
-            { id: "p4", name: "Coca-Cola Original", category: "beverages", icon: "fa-bottle-water", variants: [ {size: "500ml", price: 180}, {size: "1.25L", price: 320} ] },
-            { id: "p5", name: "Watawala Tea Blend", category: "beverages", icon: "fa-mug-hot", variants: [ {size: "400g Pack", price: 720} ] },
-            { id: "p6", name: "Sunlight Soap Bar", category: "household", icon: "fa-soap", variants: [ {size: "Twin Pack", price: 190} ] },
-            { id: "p7", name: "Signal Cavity Toothpaste", category: "essentials", icon: "fa-tooth", variants: [ {size: "120g Tube", price: 240} ] },
-            { id: "p8", name: "Newdale Creamy Yoghurt", category: "chill", icon: "fa-spoon", variants: [ {size: "1 Cup", price: 70} ] },
-            { id: "p9", name: "Keells Chicken Sausages", category: "frozen", icon: "fa-bacon", variants: [ {size: "500g Pack", price: 850} ] }
+            { id: "p1", name: "Premium Keeri Samba Rice", category: "groceries", image: "", icon: "fa-bowl-rice", variants: [ {size: "1kg Pack", price: 260}, {size: "5kg Sack", price: 1280} ] },
+            { id: "p2", name: "White Sugar Pure (සීනි)", category: "groceries", image: "", icon: "fa-cubes", variants: [ {size: "1kg Premium", price: 275} ] },
+            { id: "p3", name: "Red Dhal Cleaned (පරිප්පු)", category: "groceries", image: "", icon: "fa-seedling", variants: [ {size: "1kg Pack", price: 310} ] },
+            { id: "p4", name: "Coca-Cola Refreshing Bottle", category: "beverages", image: "", icon: "fa-bottle-water", variants: [ {size: "1.25L Bottle", price: 320}, {size: "2L Family Pack", price: 450} ] },
+            { id: "p5", name: "Sunlight Soap Bar Premium", category: "household", image: "", icon: "fa-soap", variants: [ {size: "Twin Bar Pack", price: 190} ] },
+            { id: "p6", name: "Keells Chicken Sausages", category: "frozen", image: "", icon: "fa-bacon", variants: [ {size: "500g Pack", price: 850} ] }
         ];
 
         let cart = [];
 
-        // Dynamic Product View Renderer
+        // Render Premium Cards
         function displayProducts(filter = 'all') {
-            const container = document.getElementById('catalog-products-view');
+            const container = document.getElementById('premium-products-view');
             container.innerHTML = '';
             
             const filtered = filter === 'all' ? productsData : productsData.filter(p => p.category === filter);
@@ -833,7 +663,7 @@
                     optionsHTML += `
                         <label class="v-option">
                             <div>
-                                <input type="radio" name="v_rad_${product.id}" value="${idx}" ${idx === 0 ? 'checked' : ''}>
+                                <input type="radio" name="rad_${product.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="syncCardUIVisibility('${product.id}')">
                                 <span>${v.size}</span>
                             </div>
                             <span class="v-opt-price">Rs. ${v.price}</span>
@@ -841,32 +671,69 @@
                     `;
                 });
 
+                // Check active qty in cart state to render back custom counter inline state
+                const selectedSize = product.variants[0].size;
+                const cartMatch = cart.find(c => c.id === product.id && c.size === selectedSize);
+                const currentQty = cartMatch ? cartMatch.qty : 0;
+
                 const card = document.createElement('div');
                 card.className = 'premium-card';
+                card.id = `card_${product.id}`;
                 card.innerHTML = `
-                    <div>
-                        <div class="p-icon-box"><i class="fa-solid ${product.icon || 'fa-box'}"></i></div>
-                        <div class="p-title">${product.name}</div>
-                        <div class="v-selector-box">${optionsHTML}</div>
+                    <div class="p-img-container">
+                        ${product.image ? `<img src="${product.image}" alt="Image">` : `<i class="fa-solid ${product.icon || 'fa-box'} p-fallback-icon"></i>`}
                     </div>
-                    <button class="btn-add-to-cart" onclick="addItemToCart('${product.id}')">
-                        <i class="fa-solid fa-plus"></i> Add To Bag
-                    </button>
+                    <div class="p-details-box">
+                        <div>
+                            <div class="p-title">${product.name}</div>
+                            <div class="v-selector-box">${optionsHTML}</div>
+                        </div>
+                        
+                        <div class="card-action-trigger">
+                            <button class="btn-main-add" id="add_btn_${product.id}" onclick="addCartWorkflow('${product.id}')" style="display: ${currentQty > 0 ? 'none' : 'flex'};">
+                                <i class="fa-solid fa-basket-shopping"></i> Add to Bag
+                            </button>
+                            
+                            <div class="card-qty-counter" id="counter_wrap_${product.id}" style="display: ${currentQty > 0 ? 'flex' : 'none'};">
+                                <button onclick="modifyCardQtyWorkflow('${product.id}', -1)">-</button>
+                                <span id="qty_val_${product.id}">${currentQty}</span>
+                                <button onclick="modifyCardQtyWorkflow('${product.id}', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 container.appendChild(card);
+                syncCardUIVisibility(product.id);
             });
         }
 
-        function filterCategory(category, element) {
-            document.querySelectorAll('.cat-chip').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-            displayProducts(category);
+        // Keep Product Card workflow synced depending on item selections
+        function syncCardUIVisibility(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const selectedRadio = document.querySelector(`input[name="rad_${productId}"]:checked`);
+            if (!selectedRadio) return;
+            
+            const variant = product.variants[selectedRadio.value];
+            
+            const cartMatch = cart.find(c => c.id === productId && c.size === variant.size);
+            const btn = document.getElementById(`add_btn_${productId}`);
+            const counter = document.getElementById(`counter_wrap_${productId}`);
+            const qtyLabel = document.getElementById(`qty_val_${productId}`);
+
+            if(cartMatch && cartMatch.qty > 0) {
+                btn.style.display = 'none';
+                counter.style.display = 'flex';
+                qtyLabel.innerText = cartMatch.qty;
+            } else {
+                btn.style.display = 'flex';
+                counter.style.display = 'none';
+            }
         }
 
-        // Cart Engine
-        function addItemToCart(productId) {
+        // Multi Add Workflow System - DOES NOT POP DRAWER INTERRUPTIONS
+        function addCartWorkflow(productId) {
             const product = productsData.find(p => p.id === productId);
-            const selectedIdx = document.querySelector(`input[name="v_rad_${productId}"]:checked`).value;
+            const selectedIdx = document.querySelector(`input[name="rad_${productId}"]:checked`).value;
             const variant = product.variants[selectedIdx];
 
             const matchIdx = cart.findIndex(c => c.id === productId && c.size === variant.size);
@@ -875,28 +742,39 @@
             } else {
                 cart.push({ id: product.id, name: product.name, size: variant.size, price: variant.price, qty: 1 });
             }
-            renderCartUpdates();
             
-            // Subtle premium animation/interaction alert for mobile
-            if(window.innerWidth <= 1024) {
-                openMobileDrawer();
+            renderCartEngineUpdates();
+            syncCardUIVisibility(productId);
+        }
+
+        function modifyCardQtyWorkflow(productId, change) {
+            const product = productsData.find(p => p.id === productId);
+            const selectedIdx = document.querySelector(`input[name="rad_${productId}"]:checked`).value;
+            const variant = product.variants[selectedIdx];
+
+            const matchIdx = cart.findIndex(c => c.id === productId && c.size === variant.size);
+            if(matchIdx > -1) {
+                cart[matchIdx].qty += change;
+                if(cart[matchIdx].qty <= 0) {
+                    cart.splice(matchIdx, 1);
+                }
             }
+            renderCartEngineUpdates();
+            syncCardUIVisibility(productId);
         }
 
-        function adjustQty(index, offset) {
-            cart[index].qty += offset;
-            if(cart[index].qty <= 0) cart.splice(index, 1);
-            renderCartUpdates();
+        function filterCategory(category, element) {
+            document.querySelectorAll('.cat-chip').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            displayProducts(category);
         }
 
-        function renderCartUpdates() {
-            // Setup target areas
+        // Global Render Updates Engine
+        function renderCartEngineUpdates() {
             const sidebarList = document.getElementById('sidebar-items-list');
             const drawerList = document.getElementById('drawer-items-list');
             
-            let totalCost = 0;
-            let totalItems = 0;
-            let htmlContent = '';
+            let totalCost = 0, totalItems = 0, htmlContent = '';
 
             cart.forEach((item, idx) => {
                 totalCost += (item.price * item.qty);
@@ -908,18 +786,17 @@
                             <p>${item.size} • Rs. ${item.price}</p>
                         </div>
                         <div class="qty-controls">
-                            <button class="btn-qty-action" onclick="adjustQty(${idx}, -1)">-</button>
-                            <span style="font-size:13px; font-weight:700;">${item.qty}</span>
-                            <button class="btn-qty-action" onclick="adjustQty(${idx}, 1)">+</button>
+                            <button class="btn-qty-action" onclick="globalQtyAdjuster('${item.id}', '${item.size}', -1)">-</button>
+                            <span style="font-weight:700; font-size:13px;">${item.qty}</span>
+                            <button class="btn-qty-action" onclick="globalQtyAdjuster('${item.id}', '${item.size}', 1)">+</button>
                         </div>
                     </div>
                 `;
             });
 
-            // Update Desktop UI Viewports
             if(cart.length === 0) {
-                sidebarList.innerHTML = `<div class="empty-cart-msg">Your shopping cart is completely empty.</div>`;
-                drawerList.innerHTML = `<div class="empty-cart-msg">Your shopping cart is completely empty.</div>`;
+                sidebarList.innerHTML = `<div class="empty-cart-msg">Your shopping bag is empty.</div>`;
+                drawerList.innerHTML = `<div class="empty-cart-msg">Your shopping bag is empty.</div>`;
                 document.getElementById('sidebar-checkout-btn').disabled = true;
                 document.getElementById('drawer-checkout-btn').disabled = true;
                 document.getElementById('mobile-float-bar').classList.remove('active');
@@ -928,136 +805,91 @@
                 drawerList.innerHTML = htmlContent;
                 document.getElementById('sidebar-checkout-btn').disabled = false;
                 document.getElementById('drawer-checkout-btn').disabled = false;
-                
-                // Active Mobile Floating Bar
                 document.getElementById('mobile-float-bar').classList.add('active');
             }
 
-            // Text Injectors
             const formattedTotal = `Rs. ${totalCost.toLocaleString()}`;
             document.getElementById('sidebar-total-cost').innerText = formattedTotal;
             document.getElementById('drawer-total-cost').innerText = formattedTotal;
             document.getElementById('mobile-float-total').innerText = formattedTotal;
-            
             document.getElementById('sidebar-badge').innerText = `${totalItems} Items`;
             document.getElementById('mobile-float-count').innerText = `${totalItems} Items Added`;
         }
 
-        // WhatsApp Compiler
-        function triggerWhatsAppSubmit() {
-            if(cart.length === 0) return;
-            let text = `*New Store Order - Napana Super*\n`;
-            text += `=========================\n`;
-            let grossSum = 0;
-            cart.forEach((item, index) => {
-                let sub = item.price * item.qty;
-                grossSum += sub;
-                text += `${index + 1}. ${item.name} (${item.size}) x${item.qty} -> Rs. ${sub}\n`;
-            });
-            text += `=========================\n`;
-            text += `*Total Bill Amount:* Rs. ${grossSum.toLocaleString()}\n\n`;
-            text += `Please fulfill this request dispatch. Thanks!`;
-            
-            window.open(`https://wa.me/94707103215?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        // Drawer Controllers
-        function openMobileDrawer() {
-            document.getElementById('mobile-cart-drawer-panel').classList.add('open');
-            document.getElementById('cart-drawer-overlay').classList.add('open');
-        }
-        function closeMobileDrawer() {
-            document.getElementById('mobile-cart-drawer-panel').classList.remove('open');
-            document.getElementById('cart-drawer-overlay').classList.remove('open');
-        }
-
-        // Modal Auth Interfaces
-        function toggleModal(id, open) {
-            document.getElementById(id).style.display = open ? 'flex' : 'none';
-        }
-
-        function simulateCustomerLogin() {
-            alert('Customer Login Successful!');
-            toggleModal('customer-modal', false);
-        }
-
-        // Admin Engine Gatekeeping
-        function verifyAdminAccess() {
-            const user = document.getElementById('adm-user').value;
-            const pass = document.getElementById('adm-pass').value;
-
-            if(user === 'admin' && pass === '123') {
-                document.getElementById('admin-panel').style.display = 'block';
-                document.getElementById('admin-nav-btn').innerHTML = `<i class="fa-solid fa-user-gear"></i> Admin Active`;
-                toggleModal('admin-modal', false);
-                renderAdminTable();
-                alert('Welcome Back, Administrator.');
-                document.getElementById('admin-panel').scrollIntoView({behavior:'smooth'});
-            } else {
-                alert('Invalid authentication keys entered.');
+        function globalQtyAdjuster(productId, size, change) {
+            const matchIdx = cart.findIndex(c => c.id === productId && c.size === size);
+            if(matchIdx > -1) {
+                cart[matchIdx].qty += change;
+                if(cart[matchIdx].qty <= 0) cart.splice(matchIdx, 1);
+            }
+            renderCartEngineUpdates();
+            if(document.getElementById(`card_${productId}`)) {
+                syncCardUIVisibility(productId);
             }
         }
 
-        function logoutAdmin() {
-            document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('admin-nav-btn').innerHTML = `<i class="fa-solid fa-lock"></i> Admin Portal`;
-            alert('Admin logged out successfully.');
+        // WhatsApp Sender Compiled Data Matrix
+        function triggerWhatsAppSubmit() {
+            if(cart.length === 0) return;
+            let text = `*New Order List - Napana Super*\n`;
+            text += `=========================\n`;
+            let grandSum = 0;
+            cart.forEach((item, index) => {
+                let sub = item.price * item.qty;
+                grandSum += sub;
+                text += `${index + 1}. ${item.name} (${item.size}) x${item.qty} -> Rs. ${sub}\n`;
+            });
+            text += `=========================\n`;
+            text += `*Total Bill Amount:* Rs. ${grandSum.toLocaleString()}\n\n`;
+            text += `Please package these items for pickup/delivery. Thank you!`;
+            window.open(`https://wa.me/94707103215?text=${encodeURIComponent(text)}`, '_blank');
         }
 
+        // Drawer System Helpers
+        function openMobileDrawer() { document.getElementById('mobile-cart-drawer-panel').classList.add('open'); document.getElementById('cart-drawer-overlay').classList.add('open'); }
+        function closeMobileDrawer() { document.getElementById('mobile-cart-drawer-panel').classList.remove('open'); document.getElementById('cart-drawer-overlay').classList.remove('open'); }
+        function toggleModal(id, open) { document.getElementById(id).style.display = open ? 'flex' : 'none'; }
+
+        // Core Backoffice Admin Management
+        function verifyAdminAccess() {
+            if(document.getElementById('adm-user').value === 'admin' && document.getElementById('adm-pass').value === '123') {
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('admin-nav-btn').innerHTML = `<i class="fa-solid fa-user-gear"></i> Admin Live`;
+                toggleModal('admin-modal', false);
+                renderAdminTable();
+                document.getElementById('admin-panel').scrollIntoView({behavior:'smooth'});
+            } else { alert('Access Denied.'); }
+        }
+        function logoutAdmin() { document.getElementById('admin-panel').style.display = 'none'; document.getElementById('admin-nav-btn').innerHTML = `<i class="fa-solid fa-lock"></i> Admin Panel`; }
+
         function renderAdminTable() {
-            const tbody = document.getElementById('admin-table-rows');
-            tbody.innerHTML = '';
+            const tbody = document.getElementById('admin-table-rows'); tbody.innerHTML = '';
             productsData.forEach((p, pIdx) => {
                 p.variants.forEach((v, vIdx) => {
                     const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${p.id}</td>
-                        <td><strong>${p.name}</strong></td>
-                        <td><span style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">${p.category}</span></td>
-                        <td>${v.size}</td>
-                        <td>Rs. <input type="number" value="${v.price}" style="width:70px; padding:2px;" onchange="updateStockPrice(${pIdx}, ${vIdx}, this.value)"></td>
-                        <td><button style="color:red; border:none; background:none; cursor:pointer;" onclick="deleteStockItem(${pIdx})"><i class="fa-solid fa-trash"></i></button></td>
-                    `;
+                    row.innerHTML = `<td>${p.id}</td><td><strong>${p.name}</strong></td><td>${p.category}</td><td>${v.size}</td><td>Rs. ${v.price}</td><td><button style="color:red;border:none;background:none;cursor:pointer;" onclick="deleteAdminStockItem(${pIdx})"><i class="fa-solid fa-trash"></i></button></td>`;
                     tbody.appendChild(row);
                 });
             });
         }
 
-        function updateStockPrice(pIdx, vIdx, newVal) {
-            productsData[pIdx].variants[vIdx].price = parseFloat(newVal);
-            displayProducts('all');
-            renderCartUpdates();
-        }
-
-        function deleteStockItem(pIdx) {
-            productsData.splice(pIdx, 1);
-            displayProducts('all');
-            renderAdminTable();
-            renderCartUpdates();
-        }
+        function deleteAdminStockItem(index) { productsData.splice(index, 1); displayProducts('all'); renderAdminTable(); }
 
         function adminAddProduct() {
             const name = document.getElementById('adm-name').value;
             const cat = document.getElementById('adm-cat').value;
+            const img = document.getElementById('adm-img').value;
             const size = document.getElementById('adm-size').value;
             const price = parseFloat(document.getElementById('adm-price').value);
 
-            if(!name || !cat || !size || !price) return alert('Please enter all fields correctly.');
+            if(!name || !size || !price) return alert('Fill required fields.');
 
-            const nextId = "p" + (productsData.length + 1);
-            productsData.push({
-                id: nextId, name: name, category: cat, icon: "fa-box",
-                variants: [{ size: size, price: price }]
-            });
-
-            displayProducts('all');
-            renderAdminTable();
-            alert('Item added onto Live Catalog database!');
+            productsData.push({ id: "p" + (productsData.length + 1), name: name, category: cat, image: img, icon: "fa-box", variants: [{size: size, price: price}] });
+            displayProducts('all'); renderAdminTable();
+            alert('New Product Grid Card deployed into layout stream!');
         }
 
-        window.onload = function() {
-            displayProducts('all');
-        }
+        window.onload = function() { displayProducts('all'); }
     </script>
 </body>
 </html>
