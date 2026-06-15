@@ -3,963 +3,606 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Napana Premium Supermarket</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Napana Super - Online Catalog</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #10b981;
-            --primary-hover: #059669;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --accent: #f59e0b;
+            --primary-color: #27ae60;
+            --secondary-color: #2ecc71;
+            --accent-color: #e67e22;
+            --dark-color: #2c3e50;
+            --light-bg: #f9f9f9;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
         }
 
         body {
-            background-color: var(--background);
-            color: var(--text);
-            padding-bottom: 80px;
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            scroll-behavior: smooth;
         }
 
-        /* Header */
+        /* --- 1. WELCOME PAGE SECTION --- */
+        .welcome-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header / Logo Space */
         header {
-            background-color: var(--surface);
-            padding: 15px;
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo-area {
+        .logo-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .cart-icon-btn {
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.4rem;
-            position: relative;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: var(--accent);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 700;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
 
-        /* Search Bar */
-        .search-box {
-            position: relative;
-            width: 100%;
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+            line-height: 1;
         }
 
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 15px 12px 45px;
-            background-color: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            color: var(--text);
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        .logo-text span {
+            font-size: 11px;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         /* Hero Banner */
-        .hero {
-            max-width: 1200px;
-            margin: 15px auto;
-            padding: 0 15px;
-        }
-        
         .hero-banner {
-            background: linear-gradient(135deg, #064e3b 0%, #111827 100%);
-            border-radius: 16px;
-            padding: 25px 20px;
+            position: relative;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: white;
+            padding: 20px;
         }
 
-        .hero-banner h1 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: var(--text);
+        .hero-banner h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
         }
 
         .hero-banner p {
-            color: var(--primary);
-            font-size: 0.9rem;
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Categories Section */
-        .main-container {
+        /* Shop Now Button */
+        .btn-shop-now {
+            background: linear-gradient(135deg, #ff9f43, var(--accent-color));
+            color: white;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-shop-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Quick Action Contact Buttons */
+        .quick-contact {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.02);
+        }
+
+        .btn-call {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        /* --- 2. MAIN CATALOG SECTION (HIDDEN BY DEFAULT OR SCROLLABLE) --- */
+        .catalog-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Category Tabs */
         .category-tabs {
             display: flex;
             gap: 10px;
             overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            scrollbar-width: none;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            scrollbar-width: none; /* Firefox */
         }
 
         .category-tabs::-webkit-scrollbar {
-            display: none;
+            display: none; /* Safari & Chrome */
         }
 
-        .tab {
-            padding: 10px 20px;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            white-space: nowrap;
+        .tab-btn {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 12px 22px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9rem;
+            white-space: nowrap;
             font-weight: 600;
-            color: var(--text-muted);
-            transition: all 0.2s;
+            font-size: 14px;
+            color: #666;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.2s ease;
         }
 
-        .tab.active {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: #fff;
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
         }
 
         /* Products Grid */
-        .section-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-                gap: 20px;
-            }
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .product-card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
+            background: white;
             border-radius: 16px;
-            padding: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            transition: transform 0.2s;
         }
 
-        .product-card:active {
-            transform: scale(0.98);
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
-        .product-image-placeholder {
-            width: 100%;
-            aspect-ratio: 1;
-            background-color: var(--background);
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0fff4;
+            color: var(--primary-color);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 12px;
+            font-size: 20px;
         }
 
         .product-title {
-            font-size: 0.95rem;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.3;
+            color: var(--dark-color);
         }
 
-        /* Option Selectors */
-        .selectors-box {
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .select-wrapper {
-            position: relative;
-        }
-
-        .select-wrapper label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .opt-select {
-            width: 100%;
-            padding: 6px 8px;
-            background-color: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.8rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-            padding-top: 8px;
-        }
-
-        .price {
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 1.05rem;
-        }
-
-        .add-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background-color 0.2s;
-        }
-
-        .add-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        /* Sticky Bottom Navigation & Cart Sheet */
-        .cart-sheet {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--surface);
-            border-radius: 20px 20px 0 0;
-            border-top: 1px solid var(--border);
-            max-height: 80vh;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-out;
-            box-shadow: 0 -10px 25px -5px rgba(0,0,0,0.5);
-        }
-
-        .cart-sheet.open {
-            transform: translateY(0);
-        }
-
-        .cart-header {
-            padding: 15px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-header h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .cart-items-list {
-            padding: 15px;
-            overflow-y: auto;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--background);
+        .price-select-box {
+            background: #f8f9fa;
             padding: 10px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .item-info h4 {
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-
-        .item-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .item-qty-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .qty-btn {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text);
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .cart-footer {
-            padding: 15px;
-            border-top: 1px solid var(--border);
-            background-color: var(--surface);
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
+            border-radius: 8px;
             margin-bottom: 15px;
-            font-weight: 600;
-            font-size: 1.1rem;
         }
 
-        .checkout-btn {
-            width: 100%;
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0,0,0,0.6);
-            z-index: 150;
-            display: none;
-        }
-
-        .cart-overlay.open {
-            display: block;
-        }
-
-        /* Floating bar at bottom when items in cart */
-        .bottom-bar {
-            position: fixed;
-            bottom: 15px;
-            left: 15px;
-            right: 15px;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 30px;
+        .variant-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            z-index: 140;
-            cursor: pointer;
-            transform: translateY(150%);
-            transition: transform 0.3s ease-out;
+            padding: 4px 0;
+            font-size: 13px;
+            border-bottom: 1px dashed #e0e0e0;
         }
 
-        .bottom-bar.show {
-            transform: translateY(0);
+        .variant-row:last-child {
+            border-bottom: none;
         }
 
-        .no-results {
-            grid-column: 1 / -1;
+        .variant-name {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .variant-price {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* --- 3. ABOUT & LOCATION SECTIONS --- */
+        .info-section {
+            background: white;
+            padding: 50px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .info-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .info-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .hero-banner h2 { font-size: 28px; }
+        }
+
+        .about-box h3, .location-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-box p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .badge-years {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .location-details {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: 220px;
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
             text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
+            padding: 20px;
+            font-size: 13px;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <div class="logo-area">
-                <div class="logo"><i class="fa-solid fa-shop"></i> Napana <span>Premium</span></div>
-                <button class="cart-icon-btn" onclick="toggleCart(true)">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <span class="cart-badge" id="badge-count">0</span>
-                </button>
+    <!-- WELCOME PAGE CONTAINER -->
+    <div class="welcome-page">
+        <!-- Header with Logo -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-shop"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Napana Super</h1>
+                    <span>Grocery & Essentials</span>
+                </div>
             </div>
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" class="search-input" id="search-input" placeholder="භාණ්ඩ වර්ග හෝ මිල සර්ච් කරන්න..." oninput="filterProducts()">
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="hero">
+        <!-- Hero Banner Section -->
         <div class="hero-banner">
-            <h1>Premium Grocery Shopping</h1>
-            <p>පහසුවෙන්ම තෝරලා WhatsApp හරහා ඇණවුම් කරන්න</p>
-        </div>
-    </div>
-
-    <main class="main-container">
-        <div class="category-tabs">
-            <button class="tab active" onclick="switchCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Items</button>
-            <button class="tab" onclick="switchCategory('rice', this)"><i class="fa-solid fa-bowl-rice"></i> Rice (සහල්)</button>
-            <button class="tab" onclick="switchCategory('biscuits', this)"><i class="fa-solid fa-cookie"></i> Biscuits</button>
-            <button class="tab" onclick="switchCategory('icecream', this)"><i class="fa-solid fa-ice-cream"></i> Ice Cream</button>
-        </div>
-
-        <h2 class="section-title" id="section-title"><i class="fa-solid fa-star text-primary"></i> Supermarket Products</h2>
-        
-        <div class="products-grid" id="products-grid">
-            <!-- Dynamic products will be injected here by Javascript -->
-        </div>
-    </main>
-
-    <!-- Floating bottom basket bar -->
-    <div class="bottom-bar" id="floating-basket-bar" onclick="toggleCart(true)">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fa-solid fa-basket-shopping" style="font-size: 1.2rem;"></i>
-            <div>
-                <span id="floating-item-count" style="font-weight: 700;">0 Items</span>
-                <div style="font-size: 0.75rem; opacity: 0.9;">බාස්කට් එක බලන්න ක්ලික් කරන්න</div>
-            </div>
-        </div>
-        <div style="font-weight: 700; font-size: 1.1rem;" id="floating-total-price">Rs. 0</div>
-    </div>
-
-    <!-- Cart Overlay & Sheet -->
-    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
-    <div class="cart-sheet" id="cart-sheet">
-        <div class="cart-header">
-            <h2><i class="fa-solid fa-basket-shopping" style="color: var(--primary);"></i> මගේ බාස්කට් එක</h2>
-            <button class="close-cart" onclick="toggleCart(false)"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        
-        <div class="cart-items-list" id="cart-items-list">
-            <!-- Cart items will be loaded here dynamically -->
-        </div>
-
-        <div class="cart-footer">
-            <div class="total-row">
-                <span>මුළු එකතුව (Total):</span>
-                <span id="cart-total-price" style="color: var(--accent);">Rs. 0</span>
-            </div>
-            <button class="checkout-btn" onclick="sendToWhatsApp()">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Order Via WhatsApp
+            <h2>Napana Super</h2>
+            <p><i class="fa-solid fa-star" style="color: #f1c40f;"></i> Quality Products at Best Prices</p>
+            <button class="btn-shop-now" onclick="scrollToCatalog()">
+                <i class="fa-solid fa-cart-shopping"></i> Shopping Now
             </button>
         </div>
+
+        <!-- Call & Whatsapp Quick Buttons -->
+        <div class="quick-contact">
+            <a href="tel:+94771234567" class="btn-call">
+                <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+            <a href="https://wa.me/94771234567" target="_blank" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
     </div>
 
+    <!-- PRODUCT CATALOG SECTION -->
+    <div class="catalog-container" id="catalog-section">
+        <h2 class="section-title">අපගේ භාණ්ඩ එකතුව (Product Catalog)</h2>
+        
+        <!-- Large Range Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')"><i class="fa-solid fa-border-all"></i> All Items</button>
+            <button class="tab-btn" onclick="filterCategory('groceries')"><i class="fa-solid fa-bowl-rice"></i> Groceries</button>
+            <button class="tab-btn" onclick="filterCategory('beverages')"><i class="fa-solid fa-bottle-water"></i> Beverages</button>
+            <button class="tab-btn" onclick="filterCategory('household')"><i class="fa-solid fa-soap"></i> Household Items</button>
+            <button class="tab-btn" onclick="filterCategory('essentials')"><i class="fa-solid fa-pump-soap"></i> Daily Essentials</button>
+            <button class="tab-btn" onclick="filterCategory('chill')"><i class="fa-solid fa-snowflake"></i> Chill Items</button>
+            <button class="tab-btn" onclick="filterCategory('frozen')"><i class="fa-solid fa-ice-cream"></i> Frozen Items</button>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div class="products-grid" id="products-display">
+            <!-- Dynamic products will load via JavaScript below -->
+        </div>
+    </div>
+
+    <!-- ABOUT US & LOCATION SECTIONS -->
+    <section class="info-section">
+        <div class="info-wrapper">
+            
+            <!-- About Us Block -->
+            <div class="about-box">
+                <h3><i class="fa-solid fa-store" style="color: var(--primary-color);"></i> 🏪 About Us</h3>
+                <p>නපාන සුපර් වෙතින් සැමවිටම ඔබට ගුණාත්මකභාවයෙන් ඉහළ නැවුම් එළවළු, සිල්ලර බඩු සහ දෛනික අත්‍යවශ්‍ය ද්‍රව්‍ය ඉතා සාධාරණ මිල ගණන් යටතේ ලබාගත හැක.</p>
+                <p>පාරිභෝගික විශ්වාසය හා සුහදශීලී සේවාව අපගේ මූලිකම අරමුණයි.</p>
+                <span class="badge-years"><i class="fa-solid fa-award"></i> වසර ගණනාවක විශ්වාසනීය සේවය</span>
+            </div>
+
+            <!-- Location & Hours Block -->
+            <div class="location-box">
+                <h3><i class="fa-solid fa-location-dot" style="color: #e74c3c;"></i> 📍 Location & Details</h3>
+                <div class="location-details">
+                    <p><strong>Address:</strong> Napana Junction, Kandy Road, Sri Lanka.</p>
+                    <p><strong>Opening Hours:</strong> Daily 7:30 AM - 9:30 PM</p>
+                </div>
+                <!-- Google Maps Embed -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1s0x3ae366268019b88f%3A0x280e224e7cb6f4e1!2sKandy!5e0!3m2!1sen!2slk!4v1680000000000!5m2!1sen!2slk" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Napana Super. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR DYNAMIC CATALOG & SMOOTH SCROLL -->
     <script>
-        // Premium Product Database
+        // Large Scale Range Collection Database
         const productsData = [
-            // --- RICE CATEGORY ---
-            {
-                id: "rice_keeri",
-                name: "Premium Keeri Samba (කීරි සම්බා)",
-                category: "rice",
-                icon: "fa-bowl-rice",
-                options: {
-                    "Araliya": { "1kg": 260, "5kg": 1280, "10kg": 2500 },
-                    "Nipuna": { "1kg": 255, "5kg": 1260, "10kg": 2480 },
-                    "Laksana": { "1kg": 250, "5kg": 1230, "10kg": 2420 }
-                }
-            },
-            {
-                id: "rice_nadu",
-                name: "Nadu Rice (නාඩු සහල්)",
-                category: "rice",
-                icon: "fa-bowl-rice",
-                options: {
-                    "Araliya": { "1kg": 220, "5kg": 1080, "10kg": 2150 },
-                    "Nipuna": { "1kg": 218, "5kg": 1070, "10kg": 2120 },
-                    "Local Brand": { "1kg": 210, "5kg": 1020, "10kg": 2000 }
-                }
-            },
-            {
-                id: "rice_kakulu",
-                name: "Kakulu Rice - Red/White (කැකුළු සහල්)",
-                category: "rice",
-                icon: "fa-bowl-rice",
-                options: {
-                    "Premium Clean": { "1kg": 200, "5kg": 980, "10kg": 1940 },
-                    "Samba Red": { "1kg": 210, "5kg": 1030, "10kg": 2020 }
-                }
-            },
+            // --- GROCERIES ---
+            { name: "Premium Keeri Samba", category: "groceries", icon: "fa-bowl-rice", variants: {"Araliya 5kg": "Rs. 1,280", "Nipuna 5kg": "Rs. 1,260", "1kg": "Rs. 260"} },
+            { name: "Nadu Rice (නාඩු සහල්)", category: "groceries", icon: "fa-bowl-rice", variants: {"Araliya 5kg": "Rs. 1,080", "1kg": "Rs. 220"} },
+            { name: "White Sugar (සීනි)", category: "groceries", icon: "fa-cubes", variants: {"1kg Pack": "Rs. 275", "500g": "Rs. 140"} },
+            { name: "Red Dhal (මයිසූර් පරිප්පු)", category: "groceries", icon: "fa-seedling", variants: {"1kg Premium": "Rs. 310", "500g": "Rs. 160"} },
+            { name: "Prima Wheat Flour (පිටි)", category: "groceries", icon: "fa-wheat-awn", variants: {"1kg Pack": "Rs. 230"} },
+            { name: "Fortune Coconut Oil", category: "groceries", icon: "fa-bottle-droplet", variants: {"1 Liter Bottle": "Rs. 650", "500ml": "Rs. 340"} },
+            { name: "Anchor Milk Powder", category: "groceries", icon: "fa-box", variants: {"400g Pack": "Rs. 1,150", "1kg Pack": "Rs. 2,750"} },
+            
+            // --- BEVERAGES ---
+            { name: "Coca-Cola Original", category: "beverages", icon: "fa-bottle-water", variants: {"500ml": "Rs. 180", "1.25 Liter": "Rs. 320", "2 Liter": "Rs. 450"} },
+            { name: "Sprite Refreshing", category: "beverages", icon: "fa-bottle-water", variants: {"500ml": "Rs. 180", "1.25 Liter": "Rs. 320"} },
+            { name: "MD Mixed Fruit Cordial", category: "beverages", icon: "fa-jar", variants: {"750ml Bottle": "Rs. 650", "400ml": "Rs. 380"} },
+            { name: "Nestle Milo RTD Pack", category: "beverages", icon: "fa-box-tissue", variants: {"180ml Pack": "Rs. 120"} },
+            { name: "Watawala Tea Blend", category: "beverages", icon: "fa-mug-hot", variants: {"200g Pack": "Rs. 370", "400g Pack": "Rs. 720"} },
+            { name: "Nescafe Classic Coffee", category: "beverages", icon: "fa-mug-saucer", variants: {"50g Jar": "Rs. 650", "100g": "Rs. 1,200"} },
 
-            // --- BISCUITS CATEGORY ---
-            {
-                id: "bisc_cream",
-                name: "Cream Cracker Biscuits",
-                category: "biscuits",
-                icon: "fa-cookie",
-                options: {
-                    "Munchee": { "200g": 190, "490g": 440 },
-                    "Maliban": { "200g": 185, "490g": 435 }
-                }
-            },
-            {
-                id: "bisc_chocolate",
-                name: "Chocolate Cream Biscuits",
-                category: "biscuits",
-                icon: "fa-cookie",
-                options: {
-                    "Munchee Super": { "200g": 220, "400g": 420 },
-                    "Maliban Delight": { "200g": 215, "400g": 410 }
-                }
-            },
-            {
-                id: "bisc_marie",
-                name: "Classic Marie Biscuits",
-                category: "biscuits",
-                icon: "fa-cookie",
-                options: {
-                    "Munchee Marie": { "80g": 80, "300g": 260 },
-                    "Maliban Gold Marie": { "80g": 75, "300g": 250 }
-                }
-            },
+            // --- HOUSEHOLD ITEMS ---
+            { name: "Sunlight Soap Bar", category: "household", icon: "fa-soap", variants: {"Twin Pack (150g x 2)": "Rs. 190", "4-in-1 Value Pack": "Rs. 370"} },
+            { name: "Vim Dishwash Liquid", category: "household", icon: "fa-faucet-drip", variants: {"500ml Bottle": "Rs. 410", "250ml": "Rs. 220"} },
+            { name: "Surf Excel Washing Powder", category: "household", icon: "fa-box-open", variants: {"500g Pack": "Rs. 380", "1kg Pack": "Rs. 740"} },
+            { name: "Harpic Toilet Cleaner", category: "household", icon: "fa-spray-can-sparkles", variants: {"500ml Power Plus": "Rs. 480", "750ml": "Rs. 650"} },
+            { name: "Comfort Fabric Softener", category: "household", icon: "fa-wind", variants: {"800ml Blue": "Rs. 980"} },
 
-            // --- ICE CREAM CATEGORY ---
-            {
-                id: "ice_vanilla",
-                name: "Premium Vanilla Ice Cream",
-                category: "icecream",
-                icon: "fa-ice-cream",
-                options: {
-                    "Cargills Magic": { "500ml": 280, "1L": 520, "2L": 980 },
-                    "Elephant House": { "500ml": 290, "1L": 540, "2L": 1000 },
-                    "Highland": { "500ml": 270, "1L": 500 }
-                }
-            },
-            {
-                id: "ice_chocolate",
-                name: "Rich Chocolate Ice Cream",
-                category: "icecream",
-                icon: "fa-ice-cream",
-                options: {
-                    "Cargills Magic": { "500ml": 320, "1L": 580, "2L": 1100 },
-                    "Elephant House": { "500ml": 330, "1L": 600, "2L": 1150 }
-                }
-            },
-            {
-                id: "ice_fruit",
-                name: "Fruit & Nut Ice Cream",
-                category: "icecream",
-                icon: "fa-ice-cream",
-                options: {
-                    "Elephant House": { "500ml": 380, "1L": 720 },
-                    "Cargills Magic": { "500ml": 360, "1L": 690 }
-                }
-            }
+            // --- DAILY ESSENTIALS ---
+            { name: "Panadol Tablets (GSK)", category: "essentials", icon: "fa-capsules", variants: {"1 Card (12 Tabs)": "Rs. 150"} },
+            { name: "Signal Cavity Protection", category: "essentials", icon: "fa-tooth", variants: {"120g Tube": "Rs. 240", "160g Triple": "Rs. 310"} },
+            { name: "Lifebuoy Germ Protection", category: "essentials", icon: "fa-hand-holding-hand", variants: {"100g Soap": "Rs. 130", "Buy 3 Get 1 Pack": "Rs. 380"} },
+            { name: "Pantene Shampoo", category: "essentials", icon: "fa-pump-soap", variants: {"180ml Bottle": "Rs. 590", "330ml Large": "Rs. 980"} },
+            { name: "Baby Cheramy Soap", category: "essentials", icon: "fa-baby", variants: {"75g Floral": "Rs. 110", "125g Pink": "Rs. 170"} },
+
+            // --- CHILL ITEMS ---
+            { name: "Kotmale Fresh Milk Pack", category: "chill", icon: "fa-glass-water", variants: {"1 Liter Pack": "Rs. 480", "200ml": "Rs. 110"} },
+            { name: "Newdale Creamy Yoghurt", category: "chill", icon: "fa-spoon", variants: {"1 Cup": "Rs. 70", "6 Cup Multi-pack": "Rs. 410"} },
+            { name: "Highland Butter", category: "chill", icon: "fa-cheese", variants: {"200g Salted": "Rs. 750"} },
+            { name: "Happy Cow Cheese Wedges", category: "chill", icon: "fa-pizza-slice", variants: {"8 Portions Box": "Rs. 650", "24 Portions": "Rs. 1,850"} },
+
+            // --- FROZEN ITEMS ---
+            { name: "Bairaha Whole Chicken", category: "frozen", icon: "fa-drumstick-bite", variants: {"1kg Frozen with Skin": "Rs. 1,350", "1kg Skinless": "Rs. 1,450"} },
+            { name: "Keells Chicken Sausages", category: "frozen", icon: "fa-bacon", variants: {"500g Pack": "Rs. 850", "1kg Family Pack": "Rs. 1,650"} },
+            { name: "Keells Chicken Meatballs", category: "frozen", icon: "fa-circle-dot", variants: {"200g Pack": "Rs. 390", "500g Pack": "Rs. 880"} },
+            { name: "Elephant House Ice Cream", category: "frozen", icon: "fa-ice-cream", variants: {"1 Liter Vanilla": "Rs. 540", "2 Liter Family Pack": "Rs. 1,000"} },
+            { name: "Cargills Magic Chocolate", category: "frozen", icon: "fa-ice-cream", variants: {"1 Liter Premium": "Rs. 580"} }
         ];
 
-        let cart = [];
-        let currentCategory = 'all';
+        // Smooth scroll to catalog section
+        function scrollToCatalog() {
+            document.getElementById('catalog-section').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        // Initialize App
-        window.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-        });
-
-        // Render products into the grid
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
+        // Render products dynamically
+        function displayProducts(categoryFilter = 'all') {
+            const grid = document.getElementById('products-display');
             grid.innerHTML = '';
 
-            const filtered = productsData.filter(p => currentCategory === 'all' || p.category === currentCategory);
+            const filtered = categoryFilter === 'all' 
+                ? productsData 
+                : productsData.filter(p => p.category === categoryFilter);
 
-            if(filtered.length === 0) {
-                grid.innerHTML = `<div class="no-results">කිසිවක් සොයාගත නොහැක (No items found)</div>`;
-                return;
-            }
-
-            filtered.forEach(p => {
-                // Get default brand and default size
-                const firstBrand = Object.keys(p.options)[0];
-                const firstSize = Object.keys(p.options[firstBrand])[0];
-                const defaultPrice = p.options[firstBrand][firstSize];
-
-                // Build Brand dropdown options
-                let brandOptionsHtml = '';
-                Object.keys(p.options).forEach(b => {
-                    brandOptionsHtml += `<option value="${b}">${b}</option>`;
-                });
-
-                // Build Size dropdown options
-                let sizeOptionsHtml = '';
-                Object.keys(p.options[firstBrand]).forEach(s => {
-                    sizeOptionsHtml += `<option value="${s}">${s}</option>`;
-                });
+            filtered.forEach(product => {
+                let variantHTML = '';
+                for (const [size, price] of Object.entries(product.variants)) {
+                    variantHTML += `
+                        <div class="variant-row">
+                            <span class="variant-name">${size}</span>
+                            <span class="variant-price">${price}</span>
+                        </div>
+                    `;
+                }
 
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.setAttribute('data-id', p.id);
-                
                 card.innerHTML = `
                     <div>
-                        <div class="product-image-placeholder">
-                            <i class="fa-solid ${p.icon}"></i>
+                        <div class="product-header">
+                            <div class="product-icon"><i class="fa-solid ${product.icon}"></i></div>
+                            <div class="product-title">${product.name}</div>
                         </div>
-                        <h3 class="product-title">${p.name}</h3>
-                        
-                        <div class="selectors-box">
-                            <div class="select-wrapper">
-                                <label>වර්ගය / Brand:</label>
-                                <select class="opt-select brand-select" onchange="updateProductPrice('${p.id}')">
-                                    ${brandOptionsHtml}
-                                </select>
-                            </div>
-                            <div class="select-wrapper">
-                                <label>ප්‍රමාණය / Size:</label>
-                                <select class="opt-select size-select" onchange="updateProductPrice('${p.id}')">
-                                    ${sizeOptionsHtml}
-                                </select>
-                            </div>
+                        <div class="price-select-box">
+                            ${variantHTML}
                         </div>
-                    </div>
-
-                    <div class="price-row">
-                        <span class="price">Rs. <span class="price-val">${defaultPrice}</span></span>
-                        <button class="add-btn" onclick="addToBasket('${p.id}')">
-                            <i class="fa-solid fa-plus"></i> එක් කරන්න
-                        </button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // Triggered when dropdown changes to update sizes and price
-        function updateProductPrice(productId) {
-            const card = document.querySelector(`.product-card[data-id="${productId}"]`);
-            const p = productsData.find(prod => prod.id === productId);
+        // Category tabs switching logic
+        function filterCategory(category) {
+            // Update active class on buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
             
-            const brandSelect = card.querySelector('.brand-select');
-            const sizeSelect = card.querySelector('.size-select');
-            const priceValSpan = card.querySelector('.price-val');
-
-            const selectedBrand = brandSelect.value;
-            let selectedSize = sizeSelect.value;
-
-            // Re-populate sizes if changed brand doesn't have the previously selected size
-            const availableSizes = p.options[selectedBrand];
-            if (!availableSizes[selectedSize]) {
-                sizeSelect.innerHTML = '';
-                Object.keys(availableSizes).forEach(s => {
-                    const opt = document.createElement('option');
-                    opt.value = s;
-                    opt.textContent = s;
-                    sizeSelect.appendChild(opt);
-                });
-                selectedSize = Object.keys(availableSizes)[0];
-            }
-
-            // Update price text
-            priceValSpan.textContent = p.options[selectedBrand][selectedSize];
-        }
-
-        // Switch category tabs
-        function switchCategory(cat, el) {
-            currentCategory = cat;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
+            event.currentTarget.classList.add('active');
             
-            // Clear search input on switching category
-            document.getElementById('search-input').value = '';
-            
-            renderProducts();
+            // Re-render items
+            displayProducts(category);
         }
 
-        // Global Search Filter function
-        function filterProducts() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.product-card');
-            let hasResults = false;
-
-            cards.forEach(card => {
-                const id = card.getAttribute('data-id');
-                const p = productsData.find(prod => prod.id === id);
-                
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-                const matchesCategory = currentCategory === 'all' || p.category === currentCategory;
-
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = 'flex';
-                    hasResults = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Remove existing temporary empty message if any
-            const existingMsg = document.getElementById('search-empty-msg');
-            if (existingMsg) existingMsg.remove();
-
-            if (!hasResults) {
-                const msg = document.createElement('div');
-                msg.id = 'search-empty-msg';
-                msg.className = 'no-results';
-                msg.textContent = 'ඔබ සර්ච් කල භාණ්ඩය හමුනොවුණි (No matches found)';
-                document.getElementById('products-grid').appendChild(msg);
-            }
-        }
-
-        // Add to Basket
-        function addToBasket(productId) {
-            const card = document.querySelector(`.product-card[data-id="${productId}"]`);
-            const p = productsData.find(prod => prod.id === productId);
-            
-            const brand = card.querySelector('.brand-select').value;
-            const size = card.querySelector('.size-select').value;
-            const price = p.options[brand][size];
-
-            // Unique identifier for items with specific variant combination
-            const cartItemId = `${productId}_${brand}_${size}`;
-
-            const existingIndex = cart.findIndex(item => item.cartItemId === cartItemId);
-
-            if (existingIndex > -1) {
-                cart[existingIndex].qty += 1;
-            } else {
-                cart.push({
-                    cartItemId: cartItemId,
-                    id: productId,
-                    name: p.name,
-                    brand: brand,
-                    size: size,
-                    price: price,
-                    qty: 1
-                });
-            }
-
-            updateCartState();
-            
-            // Tiny animation trick on button
-            const btn = card.querySelector('.add-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-check"></i> එක් වුණා`;
-            btn.style.backgroundColor = '#25d366';
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.backgroundColor = '';
-            }, 800);
-        }
-
-        // Update total states, count, UI views
-        function updateCartState() {
-            let totalCount = 0;
-            let totalPrice = 0;
-
-            cart.forEach(item => {
-                totalCount += item.qty;
-                totalPrice += (item.price * item.qty);
-            });
-
-            // Update Header badge & elements
-            document.getElementById('badge-count').textContent = totalCount;
-            document.getElementById('floating-item-count').textContent = `${totalCount} Items`;
-            document.getElementById('floating-total-price').textContent = `Rs. ${totalPrice}`;
-            document.getElementById('cart-total-price').textContent = `Rs. ${totalPrice}`;
-
-            // Show or hide floating bottom bar
-            const bar = document.getElementById('floating-basket-bar');
-            if(totalCount > 0) {
-                bar.classList.add('show');
-            } else {
-                bar.classList.remove('show');
-                toggleCart(false); // close sheet if empty
-            }
-
-            renderCartSheetItems();
-        }
-
-        // Render Items inside Cart Sheet
-        function renderCartSheetItems() {
-            const list = document.getElementById('cart-items-list');
-            list.innerHTML = '';
-
-            if(cart.length === 0) {
-                list.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">ඔබේ බාස්කට් එක හිස්</div>';
-                return;
-            }
-
-            cart.forEach(item => {
-                const itemRow = document.createElement('div');
-                itemRow.className = 'cart-item';
-                itemRow.innerHTML = `
-                    <div class="item-info">
-                        <h4>${item.name}</h4>
-                        <p>${item.brand} | ${item.size} - Rs. ${item.price}</p>
-                    </div>
-                    <div class="item-qty-control">
-                        <button class="qty-btn" onclick="changeQty('${item.cartItemId}', -1)">-</button>
-                        <span style="font-weight:700; font-size:0.95rem;">${item.qty}</span>
-                        <button class="qty-btn" onclick="changeQty('${item.cartItemId}', 1)">+</button>
-                    </div>
-                `;
-                list.appendChild(itemRow);
-            });
-        }
-
-        function changeQty(cartItemId, change) {
-            const index = cart.findIndex(item => item.cartItemId === cartItemId);
-            if(index > -1) {
-                cart[index].qty += change;
-                if(cart[index].qty <= 0) {
-                    cart.splice(index, 1);
-                }
-                updateCartState();
-            }
-        }
-
-        function toggleCart(show) {
-            const sheet = document.getElementById('cart-sheet');
-            const overlay = document.getElementById('cart-overlay');
-            if (show) {
-                sheet.classList.add('open');
-                overlay.classList.add('open');
-            } else {
-                sheet.classList.remove('open');
-                overlay.classList.remove('open');
-            }
-        }
-
-        // Send Cart list formatted to WhatsApp
-        function sendToWhatsApp() {
-            if(cart.length === 0) return;
-
-            // ⚠️ මෙතන තියෙන 94771234567 වෙනුවට ඔයාගේ ඇත්තම WhatsApp නම්බර් එක දාන්න bro
-            let phoneNumber = "94771234567"; 
-            let message = "*New Order from Napana Premium Supermarket*\\n\\n";
-            let grandTotal = 0;
-
-            cart.forEach((item, index) => {
-                let itemTotal = item.price * item.qty;
-                grandTotal += itemTotal;
-                message += `${index + 1}) *${item.name}*\\n`;
-                message += `   - Brand: ${item.brand}\\n`;
-                message += `   - Size: ${item.size}\\n`;
-                message += `   - Qty: ${item.qty} x Rs.${item.price} = *Rs.${itemTotal}*\\n\\n`;
-            });
-
-            message += `-------------------------\\n`;
-            message += `*Total Amount: Rs. ${grandTotal}*\\n\\n`;
-            message += `කරුණාකර මගේ ඇණවුම තහවුරු කර එවන්න.`;
-
-            let encodedMessage = encodeURIComponent(message);
-            let whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
+        // Initial loading invocation
+        window.onload = function() {
+            displayProducts('all');
+        };
     </script>
 </body>
 </html>
